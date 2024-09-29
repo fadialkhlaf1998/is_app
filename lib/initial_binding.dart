@@ -6,7 +6,7 @@ class InitialBinding implements Bindings {
   @override
   void dependencies() {
     // Get.put(ApiClient());
-    Get.put<NetworkController>(NetworkController(), permanent: true);
+    // Get.put<NetworkController>(NetworkController(), permanent: true);
     Get.put(InitController());
   }
 }
