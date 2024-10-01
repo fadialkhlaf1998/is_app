@@ -50,13 +50,13 @@ class TextFields extends StatelessWidget {
               textInputType: TextInputType.visiblePassword,
               controller: signUpController.passwordController,
             ),
-            CustomTextField(
-              width: 0.9,
-              height: 0.055,
-              labelText: context.localizations.phone_number,
-              textInputType: TextInputType.phone,
-              controller: signUpController.phoneController,
-            ),
+            // CustomTextField(
+            //   width: 0.9,
+            //   height: 0.055,
+            //   labelText: context.localizations.phone_number,
+            //   textInputType: TextInputType.phone,
+            //   controller: signUpController.phoneController,
+            // ),
           ],
         ),
       );

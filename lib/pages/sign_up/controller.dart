@@ -51,12 +51,14 @@ class SignUpController extends GetxController {
     if (fullNameController.text.isNotEmpty) {
       if (checkEmail(emailController.text)) {
         if (checkPassword(passwordController.text)) {
-          if (phoneController.text.isNotEmpty) {
-            return true;
-          } else {
-            TopSnackBar.warning(context, context.localizations.phone_empty);
-            return false;
-          }
+          return true;
+          // if (phoneController.text.isNotEmpty) {
+          //   return true;
+          // }
+          // else {
+          //   TopSnackBar.warning(context, context.localizations.phone_empty);
+          //   return false;
+          // }
         } else {
           TopSnackBar.warning(context, context.localizations.valid_password);
           return false;
