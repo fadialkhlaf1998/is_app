@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Is App</string>
+	<string>IS Interior Design</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -27,6 +27,12 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>We need access to photo to upload you room photos to help us design your room</string>
+    <key>NSCameraUsageDescription </key>
+    <string>We need access to camera to upload you room photos to help us design your room</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>We need access to microphone to upload you room video and explain us about your room</string>
 
     <key>UIBackgroundModes</key>
     <array>
@@ -39,14 +45,6 @@
     <true/>
     <key>LSSupportsOpeningDocumentsInPlace</key>
     <true/>
-
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>We need access to photo to upload you room photos to help us design your room</string>
-    <key>NSCameraUsageDescription </key>
-    <string>We need access to camera to upload you room photos to help us design your room</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>We need access to microphone to upload you room video and explain us about your room</string>
-
 
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
