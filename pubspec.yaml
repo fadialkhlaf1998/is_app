@@ -44,8 +44,8 @@ dependencies:
   shimmer: ^3.0.0
   shared_preferences: ^2.2.3
   fluttertoast:
-  image_picker:
-  file_picker:
+  image_picker: ^1.1.2
+  file_picker: ^8.1.2
   myfatoorah_flutter: ^3.1.1
 
   # The following adds the Cupertino Icons font to your application.
