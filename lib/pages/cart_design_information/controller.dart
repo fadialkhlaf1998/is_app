@@ -59,12 +59,18 @@ class CartDesignInfoController extends GetxController {
   }
 
   fillTextFields() {
-    widthController =
-        TextEditingController(text: cartDesignDetails.width.toString());
-    heightController =
-        TextEditingController(text: cartDesignDetails.height.toString());
-    lengthController =
-        TextEditingController(text: cartDesignDetails.length.toString());
+    widthController = TextEditingController(
+        text: cartDesignDetails.width.toString() == '0.0'
+            ? ''
+            : cartDesignDetails.width.toString());
+    heightController = TextEditingController(
+        text: cartDesignDetails.height.toString() == '0.0'
+            ? ''
+            : cartDesignDetails.height.toString());
+    lengthController = TextEditingController(
+        text: cartDesignDetails.length.toString() == '0.0'
+            ? ''
+            : cartDesignDetails.length.toString());
     noteController =
         TextEditingController(text: cartDesignDetails.note.toString());
   }
@@ -162,8 +168,8 @@ class CartDesignInfoController extends GetxController {
   }
 
   Future<void> pickFile(index) async {
-    FilePickerResult? result = await FilePicker.platform
-        .pickFiles(type: FileType.any);
+    FilePickerResult? result =
+        await FilePicker.platform.pickFiles(type: FileType.any);
     if (result != null) {
       PlatformFile file = result.files.first;
       print('--------------');
@@ -184,7 +190,4 @@ class CartDesignInfoController extends GetxController {
       print('User canceled the picker');
     }
   }
-
-
-
 }

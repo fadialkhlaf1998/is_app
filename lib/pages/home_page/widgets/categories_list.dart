@@ -46,12 +46,13 @@ class CategoriesList extends StatelessWidget {
                         homeController.selectCategoryId.value =
                             initController.categoriesList[index].categoryId ??
                                 0;
-                        if(Constant.isEnglish()){
+                        if (Constant.isEnglish()) {
                           homeController.selectCategoryName.value =
                               initController.categoriesList[index].title ?? '';
-                        }else{
+                        } else {
                           homeController.selectCategoryName.value =
-                              initController.categoriesList[index].arTitle ?? '';
+                              initController.categoriesList[index].arTitle ??
+                                  '';
                         }
                         Get.toNamed('/categoryDetails');
                       },
@@ -78,10 +79,12 @@ class CategoriesList extends StatelessWidget {
                     SizedBox(
                       width: Get.width * 0.22,
                       child: Text(
-                        Constant.isEnglish() ? initController.categoriesList[index].title.toString() : initController.categoriesList[index].arTitle.toString(),
-                        style: TextStyle(
-                          fontSize: 13
-                        ),
+                        Constant.isEnglish()
+                            ? initController.categoriesList[index].title
+                                .toString()
+                            : initController.categoriesList[index].arTitle
+                                .toString(),
+                        style: TextStyle(fontSize: 13),
                         textAlign: TextAlign.center,
                         maxLines: 2,
                       ),

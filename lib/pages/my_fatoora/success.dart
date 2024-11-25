@@ -9,11 +9,10 @@ class SuccessPayment extends StatefulWidget {
 }
 
 class _SuccessPaymentState extends State<SuccessPayment> {
-
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(milliseconds: 5000)).then((value){
+    Future.delayed(Duration(milliseconds: 5000)).then((value) {
       Get.offAllNamed('/mainPage');
     });
   }
@@ -26,11 +25,24 @@ class _SuccessPaymentState extends State<SuccessPayment> {
           child: Center(
             child: Column(
               children: [
-                SizedBox(height: 100,),
-                Icon(Icons.check_circle,color: Colors.green,size: 100,),
-                SizedBox(height: 20,),
-                Text("Your Order Placed Successfully, Thank You For Using IS App",style: TextStyle(fontWeight: FontWeight.bold),),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 100,
+                ),
+                Icon(
+                  Icons.check_circle,
+                  color: Colors.green,
+                  size: 100,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Your Order Placed Successfully, Thank You For Using IS App",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 Container(
                   width: Get.width * 0.8,
                   child: LinearProgressIndicator(),

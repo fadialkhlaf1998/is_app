@@ -24,6 +24,7 @@ class ProfileController extends GetxController {
     'Personal info details',
     'Change password',
     'Order history',
+    'Contact us',
     'Language',
     'Delete account',
     'Logout'
@@ -33,6 +34,7 @@ class ProfileController extends GetxController {
     'المعلومات الشخصية',
     'تغيير كلمة المرور',
     'سجل الطلبات',
+    'تواصل معنا',
     'اللغة',
     'حذف الحساب',
     'تسجيل الخروج'
@@ -42,6 +44,7 @@ class ProfileController extends GetxController {
     SETTINGS,
     LOCK,
     HISTORY,
+    CONTACT_US,
     LANGUAGE,
     DELETE,
     LOGOUT
@@ -59,12 +62,15 @@ class ProfileController extends GetxController {
         Get.toNamed('/orderHistory');
         break;
       case 3:
-        languageOpenMenu.value = true;
+        Get.toNamed('/contactUs');
         break;
       case 4:
-        deleteAccountOpenMenu.value = true;
+        languageOpenMenu.value = true;
         break;
       case 5:
+        deleteAccountOpenMenu.value = true;
+        break;
+      case 6:
         logoutOpenMenu.value = true;
         break;
     }
@@ -117,11 +123,9 @@ class ProfileController extends GetxController {
     });
   }
 
-  closeAllMenu(){
+  closeAllMenu() {
     languageOpenMenu.value = false;
     deleteAccountOpenMenu.value = false;
     logoutOpenMenu.value = false;
   }
-
-
 }

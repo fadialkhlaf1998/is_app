@@ -20,83 +20,94 @@ class CartDesignInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      return Scaffold(
-        backgroundColor: white,
-        appBar: AppBar(
-          title: Constant.isEnglish()
-              ? Text(
-            cartDesignInfoController.cartDesignDetails.title.toString() +
-                ' ' +
-                context.localizations.details,
-            style: textStyleForTitle,
-          ) : Text(
-            context.localizations.details + ' ' + cartDesignInfoController.cartDesignDetails.arTitle.toString(),
-            style: textStyleForTitle,
-          ),
+      return GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Scaffold(
           backgroundColor: white,
-          elevation: 0.0,
-          leading: GestureDetector(
-            onTap: () {
-              Get.back();
-            },
-            child: Container(
-                color: Colors.transparent,
-                child: Icon(Icons.arrow_back_ios_new_outlined,
-                    color: black, size: 20)),
+          appBar: AppBar(
+            title: Constant.isEnglish()
+                ? Text(
+                    cartDesignInfoController.cartDesignDetails.title
+                            .toString() +
+                        ' ' +
+                        context.localizations.details,
+                    style: textStyleForTitle,
+                  )
+                : Text(
+                    context.localizations.details +
+                        ' ' +
+                        cartDesignInfoController.cartDesignDetails.arTitle
+                            .toString(),
+                    style: textStyleForTitle,
+                  ),
+            backgroundColor: white,
+            elevation: 0.0,
+            leading: GestureDetector(
+              onTap: () {
+                Get.back();
+              },
+              child: Container(
+                  color: Colors.transparent,
+                  child: Icon(Icons.arrow_back_ios_new_outlined,
+                      color: black, size: 20)),
+            ),
           ),
-        ),
-        body: SafeArea(
-          child: Stack(
-            children: [
-              SingleChildScrollView(
-                child: Container(
-                  child: Column(
-                    children: [
-                      _header(),
-                      DimensionsTextFields(),
-                      CustomTextField(
-                          width: 0.95,
-                          height: 0.15,
-                          labelText: context.localizations.notes,
-                          controller: cartDesignInfoController.noteController,
-                          onChange: (value) {
-                            if (value.isNotEmpty) {
-                              cartDesignInfoController.cartDesignDetails.note =
-                                  value;
-                            }
-                            cartDesignInfoController.checkChange();
-                          },
-                          textInputType: TextInputType.text),
-                      AttachMedia(),
-                      const SizedBox(height: 15),
-                      Obx(() {
-                        return !cartDesignInfoController.sameData.value ||
-                                !cartDesignInfoController.sameFile.value
-                            ? CustomButton(
-                                width: 0.6,
-                                height: 0.05,
-                                color: primaryColor,
-                                loading: cartDesignInfoController.loading.value,
-                                title: context.localizations.save,
-                                onTap: () {
-                                  cartDesignInfoController
-                                      .updateCartRequest(context);
-                                },
-                                textStyle: textStyleForButton)
-                            : const SizedBox();
-                      }),
-                      const SizedBox(height: 30),
-                    ],
+          body: SafeArea(
+            child: Stack(
+              children: [
+                SingleChildScrollView(
+                  child: Container(
+                    child: Column(
+                      children: [
+                        _header(),
+                        DimensionsTextFields(),
+                        CustomTextField(
+                            width: 0.95,
+                            height: 0.15,
+                            labelText: context.localizations.notes,
+                            controller: cartDesignInfoController.noteController,
+                            onChange: (value) {
+                              if (value.isNotEmpty) {
+                                cartDesignInfoController
+                                    .cartDesignDetails.note = value;
+                              }
+                              cartDesignInfoController.checkChange();
+                            },
+                            textInputType: TextInputType.text),
+                        AttachMedia(),
+                        const SizedBox(height: 15),
+                        Obx(() {
+                          return !cartDesignInfoController.sameData.value ||
+                                  !cartDesignInfoController.sameFile.value
+                              ? CustomButton(
+                                  width: 0.6,
+                                  height: 0.05,
+                                  color: primaryColor,
+                                  loading:
+                                      cartDesignInfoController.loading.value,
+                                  title: context.localizations.save,
+                                  onTap: () {
+                                    cartDesignInfoController
+                                        .updateCartRequest(context);
+                                  },
+                                  textStyle: textStyleForButton)
+                              : const SizedBox();
+                        }),
+                        const SizedBox(height: 30),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              CustomPopUp(
-                  open: cartDesignInfoController.imageChosePopUp.value,
-                  outSideOnTap: () {
-                    cartDesignInfoController.imageChosePopUp.value = false;
-                  },
-                  child: ImageOptions()),
-            ],
+                CustomPopUp(
+                    open: cartDesignInfoController.imageChosePopUp.value,
+                    outSideOnTap: () {
+                      cartDesignInfoController.imageChosePopUp.value = false;
+                    },
+                    child: ImageOptions()),
+              ],
+            ),
           ),
         ),
       );
@@ -115,7 +126,7 @@ class CartDesignInfoPage extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Image.network(
-                '$baseUrl/uploads/${cartDesignInfoController.cartDesignDetails.images!.split(',')[0]}',
+                '$baseUrl/uploads/${cartDesignInfoController.cartDesignDetails.moodboard!.images!.split(',')[0]}',
                 fit: BoxFit.cover,
                 loadingBuilder: (BuildContext context, Widget child,
                     ImageChunkEvent? loadingProgress) {
@@ -155,9 +166,12 @@ class CartDesignInfoPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(40)),
                   child: Center(
                     child: Text(
-                      Constant.isEnglish() ?
-                      cartDesignInfoController.cartDesignDetails.category
-                          .toString() : cartDesignInfoController.cartDesignDetails.arCategory.toString(),
+                      Constant.isEnglish()
+                          ? cartDesignInfoController.cartDesignDetails.category
+                              .toString()
+                          : cartDesignInfoController
+                              .cartDesignDetails.arCategory
+                              .toString(),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: textStyleForSmallBlackText,
@@ -165,9 +179,11 @@ class CartDesignInfoPage extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  Constant.isEnglish() ?
-                  cartDesignInfoController.cartDesignDetails.title.toString()
-                  :cartDesignInfoController.cartDesignDetails.arTitle.toString(),
+                  Constant.isEnglish()
+                      ? cartDesignInfoController.cartDesignDetails.title
+                          .toString()
+                      : cartDesignInfoController.cartDesignDetails.arTitle
+                          .toString(),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style: textStyleForListTitle,

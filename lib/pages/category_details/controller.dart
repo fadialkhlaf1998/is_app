@@ -78,8 +78,9 @@ class CategoryDetailsController extends GetxController {
       categoryDesignsFilterList.addAll(categoryDesignsList);
     } else {
       categoryDesignsFilterList.value = categoryDesignsList
-          .where(
-              (item) => item.title!.toLowerCase().contains(query.toLowerCase()) || item.arTitle!.toLowerCase().contains(query.toLowerCase()))
+          .where((item) =>
+              item.title!.toLowerCase().contains(query.toLowerCase()) ||
+              item.arTitle!.toLowerCase().contains(query.toLowerCase()))
           .toList();
     }
   }

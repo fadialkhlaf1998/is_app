@@ -7,7 +7,6 @@ import 'package:is_app/pages/home_page/widgets/slider.dart';
 import 'package:is_app/pages/home_page/widgets/styles_grid.dart';
 import 'package:is_app/pages/home_page/widgets/title.dart';
 import 'package:is_app/res/color.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +19,7 @@ class HomePage extends StatelessWidget {
     return Obx(() {
       return RefreshIndicator(
         color: primaryColor,
-        onRefresh: ()async{
+        onRefresh: () async {
           await initController.getHomePageDataRequest();
         },
         child: SingleChildScrollView(

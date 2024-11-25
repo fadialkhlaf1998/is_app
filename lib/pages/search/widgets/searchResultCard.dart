@@ -68,9 +68,13 @@ class SearchResultCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        Constant.isEnglish() ? searchMainPageController
-                                .searchResultList[index].title.toString() : searchMainPageController
-                            .searchResultList[index].arTitle.toString() ,
+                        Constant.isEnglish()
+                            ? searchMainPageController
+                                .searchResultList[index].title
+                                .toString()
+                            : searchMainPageController
+                                .searchResultList[index].arTitle
+                                .toString(),
                         maxLines: 1,
                       ),
                     ],

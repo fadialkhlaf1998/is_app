@@ -1,3 +1,5 @@
+import 'package:is_app/data/models/response/guest/design_details_response.dart';
+
 class CartResponse {
   double? subTotal;
   double? vat;
@@ -35,9 +37,9 @@ class CartResponse {
 
 class Cart {
   int? cartId;
-  int? width;
-  int? height;
-  int? length;
+  double? width;
+  double? height;
+  double? length;
   Files? files;
   String? note;
   int? designId;
@@ -55,6 +57,7 @@ class Cart {
   String? style;
   String? arStyle;
   String? stringFiles;
+  Moodboards? moodboard;
 
   Cart(
       {this.cartId,
@@ -77,13 +80,14 @@ class Cart {
       this.arCategory,
       this.style,
       this.arStyle,
-      this.stringFiles});
+      this.stringFiles,
+      this.moodboard});
 
   Cart.fromJson(Map<String, dynamic> json) {
     cartId = json['cart_id'];
-    width = json['width'];
-    height = json['height'];
-    length = json['length'];
+    width = json['width'].toDouble();
+    height = json['height'].toDouble();
+    length = json['length'].toDouble();
     files = json['files'] != null ? new Files.fromJson(json['files']) : null;
     note = json['note'];
     designId = json['design_id'];
@@ -101,6 +105,9 @@ class Cart {
     style = json['style'];
     arStyle = json['ar_style'];
     stringFiles = json['string_files'];
+    moodboard = json['moodboard'] != null
+        ? Moodboards.fromJson(json['moodboard'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -128,6 +135,9 @@ class Cart {
     data['style'] = this.style;
     data['ar_style'] = this.arStyle;
     data['string_files'] = this.stringFiles;
+    if (this.moodboard != null) {
+      data['moodboard'] = this.moodboard!.toJson();
+    }
     return data;
   }
 
@@ -156,7 +166,8 @@ class Cart {
         other.arCategory == arCategory &&
         other.style == style &&
         other.arStyle == arStyle &&
-        other.stringFiles == stringFiles;
+        other.stringFiles == stringFiles &&
+        other.moodboard == moodboard;
   }
 
   @override
@@ -181,7 +192,8 @@ class Cart {
         arCategory.hashCode ^
         style.hashCode ^
         arStyle.hashCode ^
-        stringFiles.hashCode;
+        stringFiles.hashCode ^
+        moodboard.hashCode;
   }
 
   Cart clone() {
@@ -207,6 +219,7 @@ class Cart {
       style: this.style,
       arStyle: this.arStyle,
       stringFiles: this.stringFiles,
+      moodboard: this.moodboard?.clone(),
     );
   }
 }
@@ -281,3 +294,46 @@ class Files {
     );
   }
 }
+
+// class CartMoodboard {
+//   int? moodboardDesignId;
+//   int? moodboardId;
+//   int? designId;
+//   String? images;
+//   String? moodboard;
+//   String? arMoodboard;
+//   String? moodboardImage;
+//
+//   CartMoodboard(
+//       {this.moodboardDesignId,
+//       this.moodboardId,
+//       this.designId,
+//       this.images,
+//       this.moodboard,
+//       this.arMoodboard,
+//       this.moodboardImage});
+//
+//   CartMoodboard.fromJson(Map<String, dynamic> json) {
+//     moodboardDesignId = json['moodboard_design_id'];
+//     moodboardId = json['moodboard_id'];
+//     designId = json['design_id'];
+//     images = json['images'];
+//     moodboard = json['moodboard'];
+//     arMoodboard = json['ar_moodboard'];
+//     moodboardImage = json['moodboard_image'];
+//   }
+//
+//   Map<String, dynamic> toJson() {
+//     final Map<String, dynamic> data = new Map<String, dynamic>();
+//     data['moodboard_design_id'] = this.moodboardDesignId;
+//     data['moodboard_id'] = this.moodboardId;
+//     data['design_id'] = this.designId;
+//     data['images'] = this.images;
+//     data['moodboard'] = this.moodboard;
+//     data['ar_moodboard'] = this.arMoodboard;
+//     data['moodboard_image'] = this.moodboardImage;
+//     return data;
+//   }
+//
+//
+// }

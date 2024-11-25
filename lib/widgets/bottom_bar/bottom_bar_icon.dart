@@ -2,16 +2,19 @@ import 'package:is_app/res/color.dart';
 import 'package:is_app/widgets/custom_svg_pic/custom_svg_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:badges/badges.dart' as badges;
 
 class BottomBarIcon extends StatelessWidget {
   final VoidCallback onTap;
   final String image;
   final bool select;
+  final bool? badge;
 
   const BottomBarIcon(
       {required this.onTap,
       required this.image,
       required this.select,
+      this.badge,
       Key? key})
       : super(key: key);
 
@@ -26,11 +29,14 @@ class BottomBarIcon extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomSvgImage(
-                width: 22,
-                height: 22,
-                image: image,
-                color: select ? primaryColor : lightGrey),
+            badges.Badge(
+              showBadge: badge ?? false,
+              child: CustomSvgImage(
+                  width: 22,
+                  height: 22,
+                  image: image,
+                  color: select ? primaryColor : lightGrey),
+            ),
           ],
         ),
       ),

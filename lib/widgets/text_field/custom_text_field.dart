@@ -6,6 +6,7 @@ class CustomTextField extends StatelessWidget {
   final double width;
   final double height;
   final String? labelText;
+  final String? hintText;
   final Widget? icon;
   final Widget? suffixIcon;
   final TextEditingController? controller;
@@ -43,6 +44,7 @@ class CustomTextField extends StatelessWidget {
       this.maxLines,
       this.minLines,
       this.onChange,
+      this.hintText,
       Key? key})
       : super(key: key);
 
@@ -86,6 +88,7 @@ class CustomTextField extends StatelessWidget {
               labelText: labelText,
               labelStyle:
                   TextStyle(color: black.withOpacity(0.6), fontSize: 15),
+              hintText: hintText ?? "",
               isDense: true,
               filled: true,
               fillColor: fillColor ?? Colors.transparent,

@@ -33,7 +33,10 @@ class ProfilePage extends StatelessWidget {
                       itemBuilder: (BuildContext context, index) {
                         return ProfileOption(
                           icon: profileController.profileOptionIcons[index],
-                          title: Constant.isEnglish() ? profileController.profileOptionTitles[index] : profileController.profileOptionArabicTitles[index],
+                          title: Constant.isEnglish()
+                              ? profileController.profileOptionTitles[index]
+                              : profileController
+                                  .profileOptionArabicTitles[index],
                           index: index,
                         );
                       },

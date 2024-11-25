@@ -13,48 +13,58 @@ class DimensionsTextFields extends StatelessWidget {
     return Container(
       width: Get.width,
       margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomTextField(
-              width: 0.3,
-              height: 0.05,
-              labelText: context.localizations.width,
-              controller: cartDesignInfoController.widthController,
-              onChange: (value) {
-                if (value.isNotEmpty) {
-                  cartDesignInfoController.cartDesignDetails.width =
-                      int.parse(value);
-                }
-                cartDesignInfoController.checkChange();
-              },
-              textInputType: TextInputType.number),
-          CustomTextField(
-              width: 0.3,
-              height: 0.05,
-              labelText: context.localizations.height,
-              controller: cartDesignInfoController.heightController,
-              onChange: (value) {
-                if (value.isNotEmpty) {
-                  cartDesignInfoController.cartDesignDetails.height =
-                      int.parse(value);
-                }
-                cartDesignInfoController.checkChange();
-              },
-              textInputType: TextInputType.number),
-          CustomTextField(
-              width: 0.3,
-              height: 0.05,
-              labelText: context.localizations.length,
-              controller: cartDesignInfoController.lengthController,
-              onChange: (value) {
-                if (value.isNotEmpty) {
-                  cartDesignInfoController.cartDesignDetails.length =
-                      int.parse(value);
-                }
-                cartDesignInfoController.checkChange();
-              },
-              textInputType: TextInputType.number),
+          Text(context.localizations.dimensions_unit),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomTextField(
+                  width: 0.3,
+                  height: 0.05,
+                  hintText: '0.0',
+                  labelText: context.localizations.height,
+                  controller: cartDesignInfoController.heightController,
+                  onChange: (value) {
+                    if (value.isNotEmpty) {
+                      cartDesignInfoController.cartDesignDetails.height =
+                          double.parse(value);
+                    }
+                    cartDesignInfoController.checkChange();
+                  },
+                  textInputType: TextInputType.number),
+              CustomTextField(
+                  width: 0.3,
+                  height: 0.05,
+                  hintText: '0.0',
+                  labelText: context.localizations.width,
+                  controller: cartDesignInfoController.widthController,
+                  onChange: (value) {
+                    if (value.isNotEmpty) {
+                      cartDesignInfoController.cartDesignDetails.width =
+                          double.parse(value);
+                    }
+                    cartDesignInfoController.checkChange();
+                  },
+                  textInputType: TextInputType.number),
+              CustomTextField(
+                  width: 0.3,
+                  height: 0.05,
+                  hintText: '0.0',
+                  labelText: context.localizations.length,
+                  controller: cartDesignInfoController.lengthController,
+                  onChange: (value) {
+                    if (value.isNotEmpty) {
+                      cartDesignInfoController.cartDesignDetails.length =
+                          double.parse(value);
+                    }
+                    cartDesignInfoController.checkChange();
+                  },
+                  textInputType: TextInputType.number),
+            ],
+          ),
         ],
       ),
     );

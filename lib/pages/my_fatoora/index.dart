@@ -2,9 +2,7 @@ import 'package:is_app/pages/my_fatoora/my_fatoora.dart';
 import 'package:flutter/material.dart';
 
 class PaymentPage extends StatelessWidget {
-
-  String total;
-
+  final String total;
 
   PaymentPage(this.total);
 

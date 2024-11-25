@@ -3,11 +3,12 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 
 class CartBody {
-  int? width;
-  int? height;
-  int? length;
+  double? width;
+  double? height;
+  double? length;
   String? note;
   int? designId;
+  int? moodboardDesignId;
   File? corner1;
   File? corner2;
   File? corner3;
@@ -22,6 +23,7 @@ class CartBody {
       this.length,
       this.note,
       this.designId,
+      this.moodboardDesignId,
       this.corner1,
       this.corner2,
       this.corner3,
@@ -39,7 +41,8 @@ class CartBody {
       ..add(MapEntry('length', length.toString()))
       ..add(MapEntry('note', note.toString()))
       ..add(MapEntry('id', id.toString()))
-      ..add(MapEntry('design_id', designId.toString()));
+      ..add(MapEntry('design_id', designId.toString()))
+      ..add(MapEntry('moodboard_design_id', moodboardDesignId.toString()));
 
     if (corner1 != null) {
       formData.files.add(MapEntry(

@@ -33,13 +33,11 @@ class Constant {
     return formattedDate;
   }
 
-  static isEnglish(){
-    if(Get.locale!.languageCode == "en"){
+  static isEnglish() {
+    if (Get.locale!.languageCode == "en") {
       return true;
-    }else{
+    } else {
       return false;
     }
   }
-
-
 }

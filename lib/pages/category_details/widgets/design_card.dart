@@ -5,6 +5,7 @@ import 'package:is_app/pages/home_page/controller.dart';
 import 'package:is_app/res/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:is_app/res/images.dart';
 
 class DesignCard extends StatelessWidget {
   final int index;
@@ -34,29 +35,38 @@ class DesignCard extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
-                child: Image.network(
-                  '$baseUrl/uploads/${categoryDetailsController.categoryDesignsFilterList[index].images!.split(',')[0]}',
-                  fit: BoxFit.cover,
-                  loadingBuilder: (BuildContext context, Widget child,
-                      ImageChunkEvent? loadingProgress) {
-                    if (loadingProgress == null) {
-                      return child;
-                    }
-                    return Center(
-                      child: SizedBox(
-                        width: Get.width * 0.05,
-                        height: Get.width * 0.05,
-                        child: CircularProgressIndicator(
-                          color: primaryColor,
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded /
-                                  loadingProgress.expectedTotalBytes!
-                              : null,
-                        ),
+                child: categoryDetailsController
+                            .categoryDesignsFilterList[index]
+                            .allImages!
+                            .isEmpty ||
+                        categoryDetailsController
+                                .categoryDesignsFilterList[index].allImages ==
+                            null
+                    ? Image.asset(NO_IMAGE)
+                    : Image.network(
+                        '$baseUrl/uploads/${categoryDetailsController.categoryDesignsFilterList[index].allImages!.split(',')[0]}',
+                        fit: BoxFit.cover,
+                        loadingBuilder: (BuildContext context, Widget child,
+                            ImageChunkEvent? loadingProgress) {
+                          if (loadingProgress == null) {
+                            return child;
+                          }
+                          return Center(
+                            child: SizedBox(
+                              width: Get.width * 0.05,
+                              height: Get.width * 0.05,
+                              child: CircularProgressIndicator(
+                                color: primaryColor,
+                                value: loadingProgress.expectedTotalBytes !=
+                                        null
+                                    ? loadingProgress.cumulativeBytesLoaded /
+                                        loadingProgress.expectedTotalBytes!
+                                    : null,
+                              ),
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
-                ),
               ),
             ),
             Expanded(
@@ -68,9 +78,15 @@ class DesignCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                        Constant.isEnglish() ? categoryDetailsController
-                            .categoryDesignsFilterList[index].title.toString() : categoryDetailsController
-                            .categoryDesignsFilterList[index].arTitle.toString(),overflow: TextOverflow.ellipsis,),
+                      Constant.isEnglish()
+                          ? categoryDetailsController
+                              .categoryDesignsFilterList[index].title
+                              .toString()
+                          : categoryDetailsController
+                              .categoryDesignsFilterList[index].arTitle
+                              .toString(),
+                      overflow: TextOverflow.ellipsis,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

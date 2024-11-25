@@ -39,7 +39,7 @@ class SplashController extends GetxController {
       await AppStorage.deleteUserData();
       initController.userData = UserData(token: '');
     }
-    await Future.delayed(const Duration(milliseconds: 100)).then((value) {
+    await Future.delayed(const Duration(milliseconds: 1500)).then((value) {
       Get.offAllNamed('/mainPage');
     });
   }

@@ -13,13 +13,12 @@ import 'package:myfatoorah_flutter/MFModels.dart';
 import 'package:myfatoorah_flutter/myfatoorah_flutter.dart';
 // import 'package:myfatoorah_flutter/myfatoorah_flutter.dart';
 
-
 final String mAPIKey = "";
-final String testAPIKey = "rLtt6JWvbUHDDhsZnfpAhpYk4dxYDQkbcPTyGaKp2TYqQgG7FGZ5Th_WD53Oq8Ebz6A53njUoo1w3pjU1D4vs_ZMqFiz_j0urb_BH9Oq9VZoKFoJEDAbRZepGcQanImyYrry7Kt6MnMdgfG5jn4HngWoRdKduNNyP4kzcp3mRv7x00ahkm9LAK7ZRieg7k1PDAnBIOG3EyVSJ5kK4WLMvYr7sCwHbHcu4A5WwelxYK0GMJy37bNAarSJDFQsJ2ZvJjvMDmfWwDVFEVe_5tOomfVNt6bOg9mexbGjMrnHBnKnZR1vQbBtQieDlQepzTZMuQrSuKn-t5XZM7V6fCW7oP-uXGX-sMOajeX65JOf6XVpk29DP6ro8WTAflCDANC193yof8-f5_EYY-3hXhJj7RBXmizDpneEQDSaSz5sFk0sV5qPcARJ9zGG73vuGFyenjPPmtDtXtpx35A-BVcOSBYVIWe9kndG3nclfefjKEuZ3m4jL9Gg1h2JBvmXSMYiZtp9MR5I6pvbvylU_PP5xJFSjVTIz7IQSjcVGO41npnwIxRXNRxFOdIUHn0tjQ-7LwvEcTXyPsHXcMD8WtgBh-wxR8aKX7WPSsT1O8d8reb2aR7K3rkV3K82K_0OgawImEpwSvp9MNKynEAJQS6ZHe_J_l77652xwPNxMRTMASk1ZsJL";
+final String testAPIKey =
+    "rLtt6JWvbUHDDhsZnfpAhpYk4dxYDQkbcPTyGaKp2TYqQgG7FGZ5Th_WD53Oq8Ebz6A53njUoo1w3pjU1D4vs_ZMqFiz_j0urb_BH9Oq9VZoKFoJEDAbRZepGcQanImyYrry7Kt6MnMdgfG5jn4HngWoRdKduNNyP4kzcp3mRv7x00ahkm9LAK7ZRieg7k1PDAnBIOG3EyVSJ5kK4WLMvYr7sCwHbHcu4A5WwelxYK0GMJy37bNAarSJDFQsJ2ZvJjvMDmfWwDVFEVe_5tOomfVNt6bOg9mexbGjMrnHBnKnZR1vQbBtQieDlQepzTZMuQrSuKn-t5XZM7V6fCW7oP-uXGX-sMOajeX65JOf6XVpk29DP6ro8WTAflCDANC193yof8-f5_EYY-3hXhJj7RBXmizDpneEQDSaSz5sFk0sV5qPcARJ9zGG73vuGFyenjPPmtDtXtpx35A-BVcOSBYVIWe9kndG3nclfefjKEuZ3m4jL9Gg1h2JBvmXSMYiZtp9MR5I6pvbvylU_PP5xJFSjVTIz7IQSjcVGO41npnwIxRXNRxFOdIUHn0tjQ-7LwvEcTXyPsHXcMD8WtgBh-wxR8aKX7WPSsT1O8d8reb2aR7K3rkV3K82K_0OgawImEpwSvp9MNKynEAJQS6ZHe_J_l77652xwPNxMRTMASk1ZsJL";
 
 class MyFatoraahPage extends StatefulWidget {
-
-  MyFatoraahPage(this.title,this.total);
+  MyFatoraahPage(this.title, this.total);
 
   final String title;
   final String total;
@@ -29,11 +28,9 @@ class MyFatoraahPage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyFatoraahPage> {
-
   CartController cartController = Get.find();
 
   _MyHomePageState(this.amount);
-
 
   String? _response = '';
   MFInitiateSessionResponse? session;
@@ -93,10 +90,10 @@ class _MyHomePageState extends State<MyFatoraahPage> {
   log(Object object) {
     print('**** HERE ****');
     print(object);
-    if(object is MFGetPaymentStatusResponse){
+    if (object is MFGetPaymentStatusResponse) {
       print('*****');
       print(object.invoiceStatus!);
-      if(object.invoiceStatus != null && object.invoiceStatus == 'Paid'){
+      if (object.invoiceStatus != null && object.invoiceStatus == 'Paid') {
         //todo successfully payment
 
         // print(invoiceId);
@@ -104,7 +101,7 @@ class _MyHomePageState extends State<MyFatoraahPage> {
         // _response = result.response!.toJson().toString();
         cartController.alwaysCheckoutRequestToDone();
         Get.to(SuccessPayment());
-      }else{
+      } else {
         // checkoutController.selected.value=false;
         //todo fail payment
         Get.to(FailPayment());
@@ -114,7 +111,6 @@ class _MyHomePageState extends State<MyFatoraahPage> {
     setState(() {
       debugPrint(json);
       _response = json;
-
     });
   }
 
@@ -142,11 +138,11 @@ class _MyHomePageState extends State<MyFatoraahPage> {
     await MFSDK
         .initiatePayment(request, MFLanguage.ENGLISH)
         .then((value) => {
-      log(value),
-      paymentMethods.addAll(value.paymentMethods!),
-      for (int i = 0; i < paymentMethods.length; i++)
-        isSelected.add(false)
-    })
+              log(value),
+              paymentMethods.addAll(value.paymentMethods!),
+              for (int i = 0; i < paymentMethods.length; i++)
+                isSelected.add(false)
+            })
         .catchError((error) => {log(error.message)});
   }
 
@@ -164,8 +160,8 @@ class _MyHomePageState extends State<MyFatoraahPage> {
 
     await MFSDK
         .executePayment(request, MFLanguage.ENGLISH, (invoiceId) {
-      log(invoiceId);
-    })
+          log(invoiceId);
+        })
         .then((value) => log(value))
         .catchError((error) => {log(error.message)});
   }
@@ -179,12 +175,12 @@ class _MyHomePageState extends State<MyFatoraahPage> {
     var mfCardRequest = isToken
         ? null
         : MFCard(
-      cardHolderName: cardHolderName,
-      number: cardNumber,
-      expiryMonth: expiryMonth,
-      expiryYear: expiryYear,
-      securityCode: securityCode,
-    );
+            cardHolderName: cardHolderName,
+            number: cardNumber,
+            expiryMonth: expiryMonth,
+            expiryYear: expiryYear,
+            securityCode: securityCode,
+          );
 
     var directPaymentRequest = MFDirectPaymentRequest(
         executePaymentRequest: request, token: token, card: mfCardRequest);
@@ -202,7 +198,7 @@ class _MyHomePageState extends State<MyFatoraahPage> {
   // Payment Enquiry
   getPaymentStatus() async {
     MFGetPaymentStatusRequest request =
-    MFGetPaymentStatusRequest(key: '1515410', keyType: MFKeyType.INVOICEID);
+        MFGetPaymentStatusRequest(key: '1515410', keyType: MFKeyType.INVOICEID);
 
     await MFSDK
         .getPaymentStatus(request, MFLanguage.ENGLISH)
@@ -309,7 +305,7 @@ class _MyHomePageState extends State<MyFatoraahPage> {
       If not, then send null like this.
      */
     MFInitiateSessionRequest initiateSessionRequest =
-    MFInitiateSessionRequest();
+        MFInitiateSessionRequest();
 
     await MFSDK
         .initSession(initiateSessionRequest, MFLanguage.ENGLISH)
@@ -325,7 +321,7 @@ class _MyHomePageState extends State<MyFatoraahPage> {
 
   loadEmbeddedPayment(MFInitiateSessionResponse session) async {
     MFExecutePaymentRequest executePaymentRequest =
-    MFExecutePaymentRequest(invoiceValue: 10);
+        MFExecutePaymentRequest(invoiceValue: 10);
     executePaymentRequest.displayCurrencyIso = MFCurrencyISO.SAUDIARABIA_SAR;
     await loadCardView(session);
     if (Platform.isIOS) {
@@ -349,19 +345,19 @@ class _MyHomePageState extends State<MyFatoraahPage> {
 
   applePayPayment(MFInitiateSessionResponse session) async {
     MFExecutePaymentRequest executePaymentRequest =
-    MFExecutePaymentRequest(invoiceValue: 10);
+        MFExecutePaymentRequest(invoiceValue: 10);
     executePaymentRequest.displayCurrencyIso = MFCurrencyISO.SAUDIARABIA_SAR;
 
     await mfApplePayButton
         .displayApplePayButton(
-        session, executePaymentRequest, MFLanguage.ENGLISH)
+            session, executePaymentRequest, MFLanguage.ENGLISH)
         .then((value) => {
-      log(value),
-      mfApplePayButton
-          .executeApplePayButton(null, (invoiceId) => log(invoiceId))
-          .then((value) => log(value))
-          .catchError((error) => {log(error.message)})
-    })
+              log(value),
+              mfApplePayButton
+                  .executeApplePayButton(null, (invoiceId) => log(invoiceId))
+                  .then((value) => log(value))
+                  .catchError((error) => {log(error.message)})
+            })
         .catchError((error) => {log(error.message)});
   }
 
@@ -376,11 +372,11 @@ class _MyHomePageState extends State<MyFatoraahPage> {
       If not, then send null like this.
      */
     MFInitiateSessionRequest initiateSessionRequest =
-    MFInitiateSessionRequest();
+        MFInitiateSessionRequest();
     await MFSDK
         .initiateSession(initiateSessionRequest, (bin) {
-      log(bin);
-    })
+          log(bin);
+        })
         .then((value) => {log(value)})
         .catchError((error) => {log(error.message)});
   }
@@ -390,9 +386,9 @@ class _MyHomePageState extends State<MyFatoraahPage> {
 
     await mfCardView
         .pay(executePaymentRequest, MFLanguage.ENGLISH, (invoiceId) {
-      debugPrint("-----------$invoiceId------------");
-      log(invoiceId);
-    })
+          debugPrint("-----------$invoiceId------------");
+          log(invoiceId);
+        })
         .then((value) => log(value))
         .catchError((error) => {log(error.message)});
   }
@@ -407,7 +403,7 @@ class _MyHomePageState extends State<MyFatoraahPage> {
   // GooglePay Section
   initiateSessionForGooglePay() async {
     MFInitiateSessionRequest initiateSessionRequest = MFInitiateSessionRequest(
-      // A uniquue value for each customer must be added
+        // A uniquue value for each customer must be added
         customerIdentifier: "12332212");
 
     await MFSDK
@@ -426,8 +422,8 @@ class _MyHomePageState extends State<MyFatoraahPage> {
 
     await mfGooglePayButton
         .setupGooglePayHelper(sessionId, googlePayRequest, (invoiceId) {
-      log("-----------Invoice Id: $invoiceId------------");
-    })
+          log("-----------Invoice Id: $invoiceId------------");
+        })
         .then((value) => log(value))
         .catchError((error) => {log(error.message)});
   }
@@ -443,59 +439,57 @@ class _MyHomePageState extends State<MyFatoraahPage> {
     mfApplePayButton = MFApplePayButton(applePayStyle: MFApplePayStyle());
     mfGooglePayButton = MFGooglePayButton();
 
-    return MaterialApp(
-      home: Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          toolbarHeight: 1,
-          //   title: const Text('Plugin example app'),
-        ),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(5),
-            child: Flex(
-              direction: Axis.vertical,
-              children: [
-                Text("Payment Amount", style: textStyle()),
-                amountInput(),
-                // if (Platform.isAndroid) googlePayButton(),
-                // btn("Reload GooglePay", initiateSessionForGooglePay),
-                // embeddedCardView(),
-                // if (Platform.isIOS) applePayView(),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          paymentMethodsList(),
-                          visibilityObs
-                              ? directPaymentCardDetails()
-                              : const Column(),
-                          if (selectedPaymentMethodIndex != -1)
-                            btn("Pay", executePayment),
-                          // btn("Send Payment", sendPayment),
-                          // btn("Get Payment Status", getPaymentStatus),
-                          // if (Platform.isIOS)
-                          //   btn("Update Amount", updateAmounnt),
-                          // if (Platform.isIOS)
-                          //   btn("Reload Apple Pay", applePayPayment),
-                          // if (Platform.isIOS)
-                          //   btn("New Apple Pay", openPaymentSheet),
-                          // ColoredBox(
-                          //   color: const Color(0xFFD8E5EB),
-                          //   child: SelectableText.rich(
-                          //     TextSpan(
-                          //       text: _response!,
-                          //       style: const TextStyle(),
-                          //     ),
-                          //   ),
-                          // ),
-                        ]),
-                  ),
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        // toolbarHeight: 1,
+        title: const Text('Payment'),
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Flex(
+            direction: Axis.vertical,
+            children: [
+              Text("Payment Amount", style: textStyle()),
+              amountInput(),
+              // if (Platform.isAndroid) googlePayButton(),
+              // btn("Reload GooglePay", initiateSessionForGooglePay),
+              // embeddedCardView(),
+              // if (Platform.isIOS) applePayView(),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        paymentMethodsList(),
+                        visibilityObs
+                            ? directPaymentCardDetails()
+                            : const Column(),
+                        if (selectedPaymentMethodIndex != -1)
+                          btn("Pay", executePayment),
+                        // btn("Send Payment", sendPayment),
+                        // btn("Get Payment Status", getPaymentStatus),
+                        // if (Platform.isIOS)
+                        //   btn("Update Amount", updateAmounnt),
+                        // if (Platform.isIOS)
+                        //   btn("Reload Apple Pay", applePayPayment),
+                        // if (Platform.isIOS)
+                        //   btn("New Apple Pay", openPaymentSheet),
+                        // ColoredBox(
+                        //   color: const Color(0xFFD8E5EB),
+                        //   child: SelectableText.rich(
+                        //     TextSpan(
+                        //       text: _response!,
+                        //       style: const TextStyle(),
+                        //     ),
+                        //   ),
+                        // ),
+                      ]),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -593,14 +587,17 @@ class _MyHomePageState extends State<MyFatoraahPage> {
   Widget paymentMethodsList() {
     return Column(
       children: [
-        SizedBox(height: 25,),
+        SizedBox(
+          height: 25,
+        ),
         Container(
-          width: Get.width*0.3,
+          width: Get.width * 0.3,
           color: primaryColor,
           child: Image.asset("assets/icons/logo_png.png"),
         ),
-
-        SizedBox(height: 25,),
+        SizedBox(
+          height: 25,
+        ),
         Text("Select payment method", style: textStyle()),
         SizedBox(
           height: Get.height * 0.5,
@@ -619,23 +616,21 @@ class _MyHomePageState extends State<MyFatoraahPage> {
   Widget paymentMethodsItem(BuildContext ctxt, int index) {
     return Container(
       decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(width: 1,color: Colors.black.withOpacity(0.1))
-        )
-      ),
+          border: Border(
+              bottom:
+                  BorderSide(width: 1, color: Colors.black.withOpacity(0.1)))),
       child: SizedBox(
         width: Get.width,
         // height: 75,
         child: Container(
           decoration: isSelected[index]
               ? BoxDecoration(
-              border: Border.all(color: Colors.blueAccent, width: 2))
+                  border: Border.all(color: Colors.blueAccent, width: 2))
               : const BoxDecoration(),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Row(
               children: <Widget>[
-
                 SizedBox(
                   height: 24.0,
                   width: 24.0,
@@ -650,13 +645,14 @@ class _MyHomePageState extends State<MyFatoraahPage> {
                         });
                       }),
                 ),
-                SizedBox(width: 10,),
+                SizedBox(
+                  width: 10,
+                ),
                 Text(
                   paymentMethods[index].paymentMethodEn ?? "",
                   style: TextStyle(
                     fontSize: 12.0,
-                    fontWeight:
-                    FontWeight.bold,
+                    fontWeight: FontWeight.bold,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -684,10 +680,9 @@ class _MyHomePageState extends State<MyFatoraahPage> {
     return ElevatedButton(
       style: ButtonStyle(
         foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-        backgroundColor:
-        MaterialStateProperty.all<Color>(Colors.black),
+        backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
         shape: MaterialStateProperty.resolveWith<RoundedRectangleBorder>(
-              (Set<MaterialState> states) {
+          (Set<MaterialState> states) {
             if (states.contains(MaterialState.pressed)) {
               return RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
@@ -712,13 +707,10 @@ class _MyHomePageState extends State<MyFatoraahPage> {
   }
 
   Widget amountInput() {
-    return Text(amount+" SAR");
+    return Text(amount + " SAR");
   }
 
   TextStyle textStyle() {
     return const TextStyle(fontSize: 16.0, fontStyle: FontStyle.italic);
   }
-
-
-
 }

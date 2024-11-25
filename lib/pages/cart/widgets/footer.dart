@@ -17,11 +17,12 @@ class Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx((){
+    return Obx(() {
       return Container(
         height: Get.height * 0.24,
         width: Get.width,
-        padding: const EdgeInsets.only(right: 10, left: 10, top: 10, bottom: 15),
+        padding:
+            const EdgeInsets.only(right: 10, left: 10, top: 10, bottom: 15),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.only(
               topRight: Radius.circular(20), topLeft: Radius.circular(20)),
@@ -42,11 +43,12 @@ class Footer extends StatelessWidget {
                 cartController.myCart.subTotal.toString()),
             _cartRow(context.localizations.discount,
                 cartController.myCart.discount.toString()),
-            _cartRow(
-                context.localizations.vat, cartController.myCart.vat.toString()),
+            _cartRow(context.localizations.vat,
+                cartController.myCart.vat.toString()),
             _cartRow(context.localizations.total,
                 cartController.myCart.total.toString()),
-            const SizedBox(height: 10),
+            Text(context.localizations.tax),
+            const SizedBox(height: 5),
             CustomButton(
                 width: 0.7,
                 height: 0.05,

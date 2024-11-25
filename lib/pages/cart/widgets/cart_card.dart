@@ -30,7 +30,7 @@ class CartCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.network(
-                  '$baseUrl/uploads/${cartController.cartList[index].images!.split(',')[0]}',
+                  '$baseUrl/uploads/${cartController.cartList[index].moodboard!.images!.split(',')[0]}',
                   fit: BoxFit.cover,
                   loadingBuilder: (BuildContext context, Widget child,
                       ImageChunkEvent? loadingProgress) {
@@ -70,9 +70,10 @@ class CartCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(40)),
                     child: Center(
                       child: Text(
-                        Constant.isEnglish() ?
-                        cartController.cartList[index].category.toString()
-                        : cartController.cartList[index].arCategory.toString(),
+                        Constant.isEnglish()
+                            ? cartController.cartList[index].category.toString()
+                            : cartController.cartList[index].arCategory
+                                .toString(),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: textStyleForSmallBlackText,
@@ -80,9 +81,9 @@ class CartCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    Constant.isEnglish() ?
-                    cartController.cartList[index].title.toString()
-                    : cartController.cartList[index].arTitle.toString(),
+                    Constant.isEnglish()
+                        ? cartController.cartList[index].title.toString()
+                        : cartController.cartList[index].arTitle.toString(),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                     style: textStyleForListTitle,

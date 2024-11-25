@@ -14,6 +14,8 @@ class InitController extends GetxController {
   RxList<Styles> stylesList = <Styles>[].obs;
   RxList<Moodboards> moodboardsList = <Moodboards>[].obs;
 
+  RxBool showBadge = false.obs;
+
   RxBool loading = false.obs;
 
   UserData userData = UserData(token: '');
@@ -29,6 +31,7 @@ class InitController extends GetxController {
     categoriesList.clear();
     stylesList.clear();
     moodboardsList.clear();
+
     await guestRepo.getHomePageData().then((value) async {
       if (value.code == 1) {
         bannersList.addAll((value.data['banners'] as List)
@@ -64,14 +67,14 @@ class InitController extends GetxController {
     changeLanguage(lang);
   }
 
-
-
-
-
+  checkBadge() async {
+    showBadge.value = await AppStorage.getBadgeStatus();
+  }
 
   @override
   void onInit() async {
     super.onInit();
+    await checkBadge();
     await checkLanguage();
     userData =
         await AppStorage.getUserFromSharedPreferences() ?? UserData(token: '');

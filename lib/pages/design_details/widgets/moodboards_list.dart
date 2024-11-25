@@ -20,39 +20,56 @@ class MoodboardsList extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, index) {
-          return Container(
-            margin: const EdgeInsets.symmetric(horizontal: 7),
-            width: Get.height * 0.06,
-            height: Get.height * 0.06,
-            decoration:
-                const BoxDecoration(shape: BoxShape.circle, color: Colors.blue),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(100),
-              child: Image.network(
-                '$baseUrl/uploads/${designDetailsController.selectDesignDetails.moodboards![index].moodboardImage}',
-                fit: BoxFit.cover,
-                loadingBuilder: (BuildContext context, Widget child,
-                    ImageChunkEvent? loadingProgress) {
-                  if (loadingProgress == null) {
-                    return child;
-                  }
-                  return Center(
-                    child: SizedBox(
-                      width: Get.width * 0.05,
-                      height: Get.width * 0.05,
-                      child: CircularProgressIndicator(
+          return Obx(() {
+            return GestureDetector(
+              onTap: () {
+                designDetailsController.choseMoodboard(index, context);
+              },
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 250),
+                margin: const EdgeInsets.symmetric(horizontal: 7),
+                width: Get.height * 0.06,
+                height: Get.height * 0.06,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.grey[300],
+                    border: Border.all(
                         color: primaryColor,
-                        value: loadingProgress.expectedTotalBytes != null
-                            ? loadingProgress.cumulativeBytesLoaded /
-                                loadingProgress.expectedTotalBytes!
-                            : null,
-                      ),
-                    ),
-                  );
-                },
+                        width: designDetailsController
+                                    .chosenMoodboardDesignId.value ==
+                                designDetailsController.selectDesignDetails
+                                    .moodboards![index].moodboardDesignId
+                            ? 3
+                            : 0)),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: Image.network(
+                    '$baseUrl/uploads/${designDetailsController.selectDesignDetails.moodboards![index].moodboardImage}',
+                    fit: BoxFit.cover,
+                    loadingBuilder: (BuildContext context, Widget child,
+                        ImageChunkEvent? loadingProgress) {
+                      if (loadingProgress == null) {
+                        return child;
+                      }
+                      return Center(
+                        child: SizedBox(
+                          width: Get.width * 0.05,
+                          height: Get.width * 0.05,
+                          child: CircularProgressIndicator(
+                            color: primaryColor,
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                    loadingProgress.expectedTotalBytes!
+                                : null,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
               ),
-            ),
-          );
+            );
+          });
         },
       ),
     );

@@ -21,9 +21,9 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        await mainPageController.backButton(context);
         profileController.closeAllMenu();
-        return false;
+        return await mainPageController.backButton(context);
+        // return false;
       },
       child: Scaffold(
         bottomNavigationBar: CustomBottomBar(),

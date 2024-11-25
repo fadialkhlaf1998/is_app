@@ -15,6 +15,7 @@ class DesignResponse {
   String? arStyle;
   String? styleImage;
   List<Moodboards>? moodboards;
+  String? allImages;
 
   DesignResponse(
       {this.designId,
@@ -32,7 +33,8 @@ class DesignResponse {
       this.style,
       this.arStyle,
       this.styleImage,
-      this.moodboards});
+      this.moodboards,
+      this.allImages});
 
   DesignResponse.fromJson(Map<String, dynamic> json) {
     designId = json['design_id'];
@@ -50,6 +52,7 @@ class DesignResponse {
     style = json['style'];
     arStyle = json['ar_style'];
     styleImage = json['style_image'];
+    allImages = json['allImages'];
     if (json['moodboards'] != null) {
       moodboards = <Moodboards>[];
       json['moodboards'].forEach((v) {
@@ -75,6 +78,7 @@ class DesignResponse {
     data['style'] = style;
     data['ar_style'] = arStyle;
     data['style_image'] = styleImage;
+    data['allImages'] = allImages;
     if (moodboards != null) {
       data['moodboards'] = moodboards!.map((v) => v.toJson()).toList();
     }
@@ -86,6 +90,7 @@ class Moodboards {
   int? moodboardDesignId;
   int? moodboardId;
   int? designId;
+  String? images;
   String? moodboard;
   String? arMoodboard;
   String? moodboardImage;
@@ -94,6 +99,7 @@ class Moodboards {
       {this.moodboardDesignId,
       this.moodboardId,
       this.designId,
+      this.images,
       this.moodboard,
       this.arMoodboard,
       this.moodboardImage});
@@ -102,6 +108,7 @@ class Moodboards {
     moodboardDesignId = json['moodboard_design_id'];
     moodboardId = json['moodboard_id'];
     designId = json['design_id'];
+    images = json['images'];
     moodboard = json['moodboard'];
     arMoodboard = json['ar_moodboard'];
     moodboardImage = json['moodboard_image'];
@@ -112,9 +119,47 @@ class Moodboards {
     data['moodboard_design_id'] = moodboardDesignId;
     data['moodboard_id'] = moodboardId;
     data['design_id'] = designId;
+    data['images'] = images;
     data['moodboard'] = moodboard;
     data['ar_moodboard'] = arMoodboard;
     data['moodboard_image'] = moodboardImage;
     return data;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Moodboards &&
+        other.moodboardDesignId == moodboardDesignId &&
+        other.moodboardId == moodboardId &&
+        other.designId == designId &&
+        other.images == images &&
+        other.moodboard == moodboard &&
+        other.arMoodboard == arMoodboard &&
+        other.moodboardImage == moodboardImage;
+  }
+
+  @override
+  int get hashCode {
+    return moodboardDesignId.hashCode ^
+        moodboardId.hashCode ^
+        designId.hashCode ^
+        images.hashCode ^
+        moodboard.hashCode ^
+        arMoodboard.hashCode ^
+        moodboardImage.hashCode;
+  }
+
+  Moodboards clone() {
+    return Moodboards(
+      moodboardDesignId: this.moodboardDesignId,
+      moodboardId: this.moodboardId,
+      designId: this.designId,
+      images: this.images,
+      moodboard: this.moodboard,
+      arMoodboard: this.arMoodboard,
+      moodboardImage: this.moodboardImage,
+    );
   }
 }

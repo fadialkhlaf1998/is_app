@@ -8,6 +8,7 @@ const LOGIN_BACKGROUND = 'assets/images/login_background.png';
 const USER_IMAGE = 'assets/icons/user.svg';
 const EDIT_ICON = 'assets/icons/edit.svg';
 const ATTACH_MEDIA = 'assets/icons/attach_media.svg';
+const NO_IMAGE = 'assets/images/no_image.png';
 
 /// ----- Profile icons ------ ///
 const SETTINGS = 'assets/icons/setting.svg';
@@ -16,6 +17,9 @@ const HISTORY = 'assets/icons/history.svg';
 const LANGUAGE = 'assets/icons/language.svg';
 const DELETE = 'assets/icons/delete.svg';
 const LOGOUT = 'assets/icons/logout.svg';
+const String PHONE_ICON = "assets/icons/phone.svg";
+const String WHATSAPP_ICON = "assets/icons/whatsapp.svg";
+const String CONTACT_US = "assets/icons/chat.svg";
 
 const CART2 = "assets/icons/cart2.svg";
 
@@ -35,3 +39,8 @@ const CAM3 = "assets/icons/cart_info/cam3.svg";
 const CAM4 = "assets/icons/cart_info/cam4.svg";
 const PDF_ICON = "assets/icons/cart_info/pdf.svg";
 const DWG_ICON = "assets/icons/cart_info/dwg.svg";
+
+/// ------------ Animation ------------ ///
+
+const noInternetIcon = "assets/animation/no_internet_icon.json";
+const splashScreenAnimation = "assets/animation/splash.json";

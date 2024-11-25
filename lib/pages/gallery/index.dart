@@ -50,7 +50,8 @@ class GalleryPage extends StatelessWidget {
     return Container(
       width: Get.width * 0.95,
       child: GridView.builder(
-        physics: BouncingScrollPhysics().applyTo(AlwaysScrollableScrollPhysics()),
+        physics:
+            BouncingScrollPhysics().applyTo(AlwaysScrollableScrollPhysics()),
         controller: galleryController.scrollController,
         gridDelegate: SliverQuiltedGridDelegate(
           crossAxisCount: 2,
@@ -100,8 +101,7 @@ class GalleryPage extends StatelessWidget {
                           height: Get.width * 0.05,
                           child: CircularProgressIndicator(
                             color: primaryColor,
-                            value: loadingProgress.expectedTotalBytes !=
-                                    null
+                            value: loadingProgress.expectedTotalBytes != null
                                 ? loadingProgress.cumulativeBytesLoaded /
                                     loadingProgress.expectedTotalBytes!
                                 : null,

@@ -1,3 +1,6 @@
+import 'dart:collection';
+
+import 'package:is_app/controller/app_storage.dart';
 import 'package:is_app/controller/init_controller.dart';
 import 'package:is_app/data/models/body/cart/cart_id_body.dart';
 import 'package:is_app/data/models/response/cart/cart_response.dart';
@@ -27,17 +30,37 @@ class CartController extends GetxController {
     if (initController.checkUserIfLogin()) {
       cartList.clear();
       loading.value = true;
-      await cartRepo.getCart().then((value) {
+      await cartRepo.getCart().then((value) async {
         if (value.code == 1) {
           cartList.addAll((value.data['cart'] as List)
               .map((e) => Cart.fromJson(e))
               .toList());
           myCart = CartResponse.fromJson(value.data);
+          // await discoverNewDesign();
           loading.value = false;
         } else {
           loading.value = false;
         }
       });
+    }
+  }
+
+  discoverNewDesign() async {
+    final oldList = await AppStorage.getCartList();
+    final oldSet = HashSet.from(oldList);
+
+    bool newItemDetected = false;
+    for (var newCart in cartList) {
+      if (oldSet.length < cartList.length) {
+        break;
+      }
+      if (!oldSet.contains(newCart)) {
+        newItemDetected = true;
+        initController.showBadge.value = newItemDetected;
+        await AppStorage.saveBadgeStatus(newItemDetected);
+        await AppStorage.saveCartList(cartList);
+        break;
+      }
     }
   }
 
@@ -66,60 +89,62 @@ class CartController extends GetxController {
     cartDesignDetails = cartList[index];
   }
 
-  getCartItemDetailsFromDesign(DesignResponse designResponse, int cartId) {
+  getCartItemDetailsFromDesign(
+      DesignResponse designResponse, int cartId, Moodboards moodboardDetails) {
     cartDesignDetails = Cart(
-      cartId: cartId,
-      width: 0,
-      height: 0,
-      length: 0,
-      files: Files(
-        corner1: "",
-        corner2: "",
-        corner3: "",
-        corner4: "",
-        dwg: "",
-        pdf: ""
-      ),
-      note: "",
-      designId: designResponse.designId,
-      accountId: -1,
-      title: designResponse.title,
-      arTitle: designResponse.arTitle,
-      images: designResponse.images,
-      description: designResponse.description,
-      arDescription: designResponse.arDescription,
-      categoryId: designResponse.categoryId,
+        cartId: cartId,
+        width: 0,
+        height: 0,
+        length: 0,
+        files: Files(
+            corner1: "",
+            corner2: "",
+            corner3: "",
+            corner4: "",
+            dwg: "",
+            pdf: ""),
+        note: "",
+        designId: designResponse.designId,
+        accountId: -1,
+        title: designResponse.title,
+        arTitle: designResponse.arTitle,
+        images: designResponse.images,
+        description: designResponse.description,
+        arDescription: designResponse.arDescription,
+        categoryId: designResponse.categoryId,
         styleId: designResponse.styleId,
-      price: designResponse.price,
+        price: designResponse.price,
         category: designResponse.category,
         arCategory: designResponse.arCategory,
         style: designResponse.style,
         arStyle: designResponse.arStyle,
-        stringFiles: "{\"corner_1\":\"\",\"corner_2\":\"\",\"corner_3\":\"\",\"corner_4\":\"\",\"pdf\":\"\",\"dwg\":\"\"}",
-    );
+        stringFiles:
+            "{\"corner_1\":\"\",\"corner_2\":\"\",\"corner_3\":\"\",\"corner_4\":\"\",\"pdf\":\"\",\"dwg\":\"\"}",
+        moodboard: moodboardDetails);
   }
 
   checkoutRequest(BuildContext context) async {
     loadingCheck.value = true;
     await cartRepo.checkout().then((value) async {
-      if(value.code == 1){
+      if (value.code == 1) {
         TopSnackBar.success(context, 'Done');
         loadingCheck.value = false;
         await getCartRequest();
-      }else{
+      } else {
         loadingCheck.value = false;
         TopSnackBar.warning(context, context.localizations.something_wrong);
       }
     });
   }
+
   alwaysCheckoutRequestToDone() async {
     loadingCheck.value = true;
     await cartRepo.checkout().then((value) async {
-      if(value.code == 1){
+      if (value.code == 1) {
         loadingCheck.value = false;
         await getCartRequest();
         return;
-      }else{
+      } else {
         loadingCheck.value = false;
         return await alwaysCheckoutRequestToDone();
       }

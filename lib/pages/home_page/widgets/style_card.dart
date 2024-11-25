@@ -18,10 +18,10 @@ class StyleCard extends StatelessWidget {
       onTap: () {
         homeController.selectStylesId.value =
             initController.stylesList[index].styleId ?? 0;
-        if(Constant.isEnglish()){
+        if (Constant.isEnglish()) {
           homeController.selectStylesName.value =
               initController.stylesList[index].title ?? '';
-        }else{
+        } else {
           homeController.selectStylesName.value =
               initController.stylesList[index].arTitle ?? '';
         }
@@ -73,10 +73,9 @@ class StyleCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      Constant.isEnglish() ?
-                        initController.stylesList[index].title.toString() : initController.stylesList[index].arTitle.toString()
-                    ),
+                    Text(Constant.isEnglish()
+                        ? initController.stylesList[index].title.toString()
+                        : initController.stylesList[index].arTitle.toString()),
                     // Row(
                     //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     //   children: [

@@ -32,7 +32,8 @@ class HomeSlider extends StatelessWidget {
                     reverse: false,
                     autoPlay: true,
                     autoPlayInterval: const Duration(seconds: 10),
-                    autoPlayAnimationDuration: const Duration(milliseconds: 1500),
+                    autoPlayAnimationDuration:
+                        const Duration(milliseconds: 1500),
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enlargeCenterPage: true,
                     enlargeFactor: 0.15,
@@ -56,7 +57,8 @@ class HomeSlider extends StatelessWidget {
                             child: Image.network(
                               '$baseUrl/uploads/${i.image}',
                               fit: BoxFit.cover,
-                              loadingBuilder: (BuildContext context, Widget child,
+                              loadingBuilder: (BuildContext context,
+                                  Widget child,
                                   ImageChunkEvent? loadingProgress) {
                                 if (loadingProgress == null) {
                                   return child;
@@ -67,12 +69,14 @@ class HomeSlider extends StatelessWidget {
                                     height: Get.width * 0.05,
                                     child: CircularProgressIndicator(
                                       color: primaryColor,
-                                      value: loadingProgress.expectedTotalBytes !=
-                                              null
-                                          ? loadingProgress
-                                                  .cumulativeBytesLoaded /
-                                              loadingProgress.expectedTotalBytes!
-                                          : null,
+                                      value:
+                                          loadingProgress.expectedTotalBytes !=
+                                                  null
+                                              ? loadingProgress
+                                                      .cumulativeBytesLoaded /
+                                                  loadingProgress
+                                                      .expectedTotalBytes!
+                                              : null,
                                     ),
                                   ),
                                 );

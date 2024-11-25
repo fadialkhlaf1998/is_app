@@ -1,4 +1,3 @@
-import 'package:is_app/controller/constant.dart';
 import 'package:is_app/extensions/context_localization.dart';
 import 'package:is_app/pages/personal_info_details/controller.dart';
 import 'package:is_app/res/color.dart';
@@ -30,8 +29,7 @@ class PersonalInfoDetailsPage extends StatelessWidget {
           child: Container(
               color: Colors.transparent,
               child: Icon(Icons.arrow_back_ios_new_outlined,
-                  color: black, size: 20)
-          ),
+                  color: black, size: 20)),
         ),
       ),
       body: SafeArea(

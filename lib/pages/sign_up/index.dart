@@ -39,7 +39,7 @@ class SignUpPage extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: Container(
                       width: Get.width,
-                      height: Get.height * 0.6,
+                      height: Get.height * 0.5,
                       padding: EdgeInsets.symmetric(
                           horizontal: Constant.paddingSpace),
                       child: Column(

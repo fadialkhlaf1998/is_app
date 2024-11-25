@@ -17,7 +17,8 @@ class OrderHistoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        orderHistoryController.selectedOrder = orderHistoryController.orderHistoryList[index].orderId!;
+        orderHistoryController.selectedOrder =
+            orderHistoryController.orderHistoryList[index].orderId!;
         Get.toNamed('/orderDetails');
       },
       child: Container(

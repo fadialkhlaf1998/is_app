@@ -1,4 +1,5 @@
 import 'package:is_app/pages/cart/controller.dart';
+import 'package:is_app/pages/contact_us/controller.dart';
 import 'package:is_app/pages/gallery/controller.dart';
 import 'package:is_app/pages/home_page/controller.dart';
 import 'package:is_app/pages/main_page/controller.dart';
@@ -15,5 +16,6 @@ class MainPageBinding implements Bindings {
     Get.put(HomeController());
     Get.put(GalleryController());
     Get.put(SearchMainPageController());
+    Get.put(ContactUsController());
   }
 }

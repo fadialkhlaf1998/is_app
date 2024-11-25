@@ -161,10 +161,11 @@ class CustomFilterBottomSheet extends StatelessWidget {
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: Text(
-                            Constant.isEnglish() ?
-                            initController.categoriesList[index].title
-                                .toString() : initController.categoriesList[index].arTitle
-                                .toString(),
+                            Constant.isEnglish()
+                                ? initController.categoriesList[index].title
+                                    .toString()
+                                : initController.categoriesList[index].arTitle
+                                    .toString(),
                             style: categoryDetailsController
                                     .checkCategorySelect(index)
                                 ? textStyleForSmallWhiteText
@@ -231,8 +232,11 @@ class CustomFilterBottomSheet extends StatelessWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          Constant.isEnglish() ?
-                          initController.stylesList[index].title.toString() : initController.stylesList[index].arTitle.toString(),
+                          Constant.isEnglish()
+                              ? initController.stylesList[index].title
+                                  .toString()
+                              : initController.stylesList[index].arTitle
+                                  .toString(),
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
                           style:

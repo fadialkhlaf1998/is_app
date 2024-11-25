@@ -10,7 +10,6 @@ class GalleryController extends GetxController {
 
   final ScrollController scrollController = ScrollController();
 
-
   getGalleryImageRequest() async {
     loading.value = true;
     galleryList.clear();

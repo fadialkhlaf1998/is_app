@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Urbanist',
+        useMaterial3: false,
         primaryColor: primaryColor,
         appBarTheme: AppBarTheme(color: primaryColor),
       ),

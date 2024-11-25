@@ -4,7 +4,6 @@ import 'package:is_app/data/repository/profile_repo.dart';
 import 'package:is_app/pages/order_history/controller.dart';
 
 class OrderDetailsController extends GetxController {
-
   ProfileRepo profileRepo = ProfileRepo();
 
   OrderHistoryController orderHistoryController = Get.find();
@@ -12,9 +11,11 @@ class OrderDetailsController extends GetxController {
 
   RxBool loading = true.obs;
 
-  getData()async{
+  getData() async {
     loading.value = true;
-    await profileRepo.getOrderDetails(orderHistoryController.selectedOrder.toString()).then((value) {
+    await profileRepo
+        .getOrderDetails(orderHistoryController.selectedOrder.toString())
+        .then((value) {
       if (value.code == 1) {
         print(value.data);
         orderDetailsResponse =
@@ -37,5 +38,4 @@ class OrderDetailsController extends GetxController {
     print('************');
     print(loading.value);
   }
-
 }

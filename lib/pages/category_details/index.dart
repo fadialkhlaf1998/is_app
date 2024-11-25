@@ -23,8 +23,7 @@ class CategoryDetailsPage extends StatelessWidget {
       return Scaffold(
         backgroundColor: white,
         appBar: AppBar(
-          title: Text(
-              homeController.selectCategoryName.value,
+          title: Text(homeController.selectCategoryName.value,
               style: textStyleForTitle),
           leading: GestureDetector(
             onTap: () {
@@ -122,4 +121,3 @@ class CategoryDetailsPage extends StatelessWidget {
     });
   }
 }
-

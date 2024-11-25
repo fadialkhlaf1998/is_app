@@ -20,11 +20,13 @@ class DesignInfo extends StatelessWidget {
         children: [
           !designDetailsController.loading.value
               ? Text(
-            Constant.isEnglish() ?
-                  designDetailsController.selectDesignDetails.title.toString()
-            : designDetailsController.selectDesignDetails.arTitle.toString(),
+                  Constant.isEnglish()
+                      ? designDetailsController.selectDesignDetails.title
+                          .toString()
+                      : designDetailsController.selectDesignDetails.arTitle
+                          .toString(),
                   overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
+                  maxLines: 3,
                   style: textStyleForBoldTitle,
                 )
               : LoadingContainer(width: 0.15, height: 0.025),
@@ -38,9 +40,12 @@ class DesignInfo extends StatelessWidget {
           const SizedBox(height: 10),
           !designDetailsController.loading.value
               ? Text(
-            Constant.isEnglish() ?
-                  designDetailsController.selectDesignDetails.description.toString()
-            : designDetailsController.selectDesignDetails.arDescription.toString(),
+                  Constant.isEnglish()
+                      ? designDetailsController.selectDesignDetails.description
+                          .toString()
+                      : designDetailsController
+                          .selectDesignDetails.arDescription
+                          .toString(),
                   maxLines: 20,
                   style: textStyleForListTitle,
                 )

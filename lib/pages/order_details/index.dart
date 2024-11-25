@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:is_app/widgets/loading/custom_loading.dart';
 
 class OrderDetailsPage extends StatelessWidget {
-  OrderDetailsController orderDetailsController =
+  final OrderDetailsController orderDetailsController =
       Get.put(OrderDetailsController());
 
   @override

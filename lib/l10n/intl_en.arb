@@ -76,7 +76,12 @@
   "clear": "Clear",
   "start_search": "Start search now!\nAnd Explore our designs",
   "camera": "Camera",
-  "chose_image": "Chose image from"
+  "chose_image": "Chose image from",
+  "dimensions_unit": "Please enter dimensions in meters",
+  "tax": "Price includes tax",
+  "contact_us": "Contact us",
+  "must_chose_moodboard": "You must choose the moodboard color before adding to the cart",
+  "no_option": "There are no option currently"
 
 
 }

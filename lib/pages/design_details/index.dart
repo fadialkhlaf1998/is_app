@@ -28,9 +28,11 @@ class DesignDetailsPage extends StatelessWidget {
           title: designDetailsController.loading.value
               ? const LoadingContainer(width: 0.2, height: 0.03)
               : Text(
-            Constant.isEnglish() ?
-                  designDetailsController.selectDesignDetails.title.toString()
-            : designDetailsController.selectDesignDetails.arTitle.toString(),
+                  Constant.isEnglish()
+                      ? designDetailsController.selectDesignDetails.title
+                          .toString()
+                      : designDetailsController.selectDesignDetails.arTitle
+                          .toString(),
                   style: textStyleForTitle,
                 ),
           backgroundColor: white,
@@ -70,8 +72,7 @@ class DesignDetailsPage extends StatelessWidget {
                 title: context.localizations.add_to_cart,
                 onTap: () async {
                   if (initController.checkUserIfLogin()) {
-                    await designDetailsController.addToCartRequest(context,
-                        designDetailsController.selectDesignDetails.designId);
+                    await designDetailsController.addToCartRequest(context);
                   } else {
                     TopSnackBar.warning(
                         context, context.localizations.must_login);

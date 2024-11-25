@@ -4,6 +4,7 @@ import 'package:is_app/pages/category_details/binding.dart';
 import 'package:is_app/pages/category_details/index.dart';
 import 'package:is_app/pages/change_password/binding.dart';
 import 'package:is_app/pages/change_password/index.dart';
+import 'package:is_app/pages/contact_us/index.dart';
 import 'package:is_app/pages/design_details/binding.dart';
 import 'package:is_app/pages/design_details/index.dart';
 import 'package:is_app/pages/gallery/widgets/custom_photo_view.dart';
@@ -11,6 +12,8 @@ import 'package:is_app/pages/login/binding.dart';
 import 'package:is_app/pages/login/index.dart';
 import 'package:is_app/pages/main_page/binding.dart';
 import 'package:is_app/pages/main_page/index.dart';
+import 'package:is_app/pages/no_internet/binding.dart';
+import 'package:is_app/pages/no_internet/index.dart';
 import 'package:is_app/pages/order_details/binding.dart';
 import 'package:is_app/pages/order_details/index.dart';
 import 'package:is_app/pages/order_history/binding.dart';
@@ -85,6 +88,11 @@ abstract class AppRouting {
             name: Pages.stylesDetails.value,
             page: () => StylesDetailsPage(),
             binding: StylesDetailsBinding()),
+        GetPage(
+            name: Pages.noInternet.value,
+            page: () => NoInternetPage(),
+            binding: NoInternetBinding()),
+        GetPage(name: Pages.contactUs.value, page: () => ContactUsPage()),
       ];
 }
 
@@ -101,7 +109,9 @@ enum Pages {
   orderDetails,
   cartDesignInfo,
   designDetails,
-  stylesDetails
+  stylesDetails,
+  noInternet,
+  contactUs
 }
 
 extension PagesExtension on Pages {
@@ -133,6 +143,10 @@ extension PagesExtension on Pages {
         return '/designDetails';
       case Pages.stylesDetails:
         return '/stylesDetails';
+      case Pages.noInternet:
+        return '/noInternet';
+      case Pages.contactUs:
+        return '/contactUs';
       default:
         throw 'unnamed route';
     }
@@ -168,6 +182,10 @@ abstract class Navigation {
         return Pages.designDetails;
       case '/stylesDetails':
         return Pages.stylesDetails;
+      case '/noInternet':
+        return Pages.noInternet;
+      case '/contactUs':
+        return Pages.contactUs;
       default:
         return null;
     }

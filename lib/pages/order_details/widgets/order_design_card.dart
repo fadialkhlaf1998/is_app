@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OrderDesignCard extends StatelessWidget {
-  int index;
-  OrderItems orderItems;
+  final int index;
+  final OrderItems orderItems;
 
   OrderDesignCard(this.index, this.orderItems);
 
@@ -23,9 +23,11 @@ class OrderDesignCard extends StatelessWidget {
             width: Get.height * 0.15,
             height: Get.height * 0.15,
             decoration: BoxDecoration(
-                color: Colors.grey, borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(image: NetworkImage('$baseUrl/uploads/${orderItems.images!.split(",")[0]}'))
-            ),
+                color: Colors.grey,
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(
+                    image: NetworkImage(
+                        '$baseUrl/uploads/${orderItems.images!.split(",")[0]}'))),
           ),
           const SizedBox(width: 10),
           Column(
@@ -33,17 +35,17 @@ class OrderDesignCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                width: Get.width*0.5,
+                width: Get.width * 0.5,
                 child: Text(
-                  Constant.isEnglish() ?
-                  orderItems.title!
+                  Constant.isEnglish()
+                      ? orderItems.title!
                       : orderItems.arTitle!,
                   style: textStyleForListTitle,
                 ),
               ),
               const SizedBox(height: 5),
               Text(
-                orderItems.price!.toStringAsFixed(2)+' SAR',
+                orderItems.price!.toStringAsFixed(2) + ' SAR',
                 style: textStyleForListTitle,
               ),
             ],

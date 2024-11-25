@@ -5,6 +5,7 @@ import 'package:is_app/pages/styles_details/controller.dart';
 import 'package:is_app/res/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:is_app/res/images.dart';
 
 class StylesDesignCard extends StatelessWidget {
   final int index;
@@ -34,29 +35,36 @@ class StylesDesignCard extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
-                child: Image.network(
-                  '$baseUrl/uploads/${stylesDetailsController.stylesDesignsFilterList[index].images!.split(',')[0]}',
-                  fit: BoxFit.cover,
-                  loadingBuilder: (BuildContext context, Widget child,
-                      ImageChunkEvent? loadingProgress) {
-                    if (loadingProgress == null) {
-                      return child;
-                    }
-                    return Center(
-                      child: SizedBox(
-                        width: Get.width * 0.05,
-                        height: Get.width * 0.05,
-                        child: CircularProgressIndicator(
-                          color: primaryColor,
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded /
-                                  loadingProgress.expectedTotalBytes!
-                              : null,
-                        ),
+                child: stylesDetailsController.stylesDesignsFilterList[index]
+                            .allImages!.isEmpty ||
+                        stylesDetailsController
+                                .stylesDesignsFilterList[index].allImages ==
+                            null
+                    ? Image.asset(NO_IMAGE)
+                    : Image.network(
+                        '$baseUrl/uploads/${stylesDetailsController.stylesDesignsFilterList[index].allImages!.split(',')[0]}',
+                        fit: BoxFit.cover,
+                        loadingBuilder: (BuildContext context, Widget child,
+                            ImageChunkEvent? loadingProgress) {
+                          if (loadingProgress == null) {
+                            return child;
+                          }
+                          return Center(
+                            child: SizedBox(
+                              width: Get.width * 0.05,
+                              height: Get.width * 0.05,
+                              child: CircularProgressIndicator(
+                                color: primaryColor,
+                                value: loadingProgress.expectedTotalBytes !=
+                                        null
+                                    ? loadingProgress.cumulativeBytesLoaded /
+                                        loadingProgress.expectedTotalBytes!
+                                    : null,
+                              ),
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
-                ),
               ),
             ),
             Expanded(
@@ -68,9 +76,13 @@ class StylesDesignCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                        Constant.isEnglish() ? stylesDetailsController
-                            .stylesDesignsFilterList[index].title.toString() : stylesDetailsController
-                            .stylesDesignsFilterList[index].arTitle.toString() ,
+                      Constant.isEnglish()
+                          ? stylesDetailsController
+                              .stylesDesignsFilterList[index].title
+                              .toString()
+                          : stylesDetailsController
+                              .stylesDesignsFilterList[index].arTitle
+                              .toString(),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),

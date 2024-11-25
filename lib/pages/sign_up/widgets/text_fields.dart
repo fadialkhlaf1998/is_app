@@ -13,7 +13,7 @@ class TextFields extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       return SizedBox(
-        height: Get.height * 0.3,
+        height: Get.height * 0.22,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
