@@ -8,6 +8,7 @@ import 'package:is_app/pages/contact_us/index.dart';
 import 'package:is_app/pages/design_details/binding.dart';
 import 'package:is_app/pages/design_details/index.dart';
 import 'package:is_app/pages/gallery/widgets/custom_photo_view.dart';
+import 'package:is_app/pages/gallery_full/index.dart';
 import 'package:is_app/pages/login/binding.dart';
 import 'package:is_app/pages/login/index.dart';
 import 'package:is_app/pages/main_page/binding.dart';
@@ -93,6 +94,7 @@ abstract class AppRouting {
             page: () => NoInternetPage(),
             binding: NoInternetBinding()),
         GetPage(name: Pages.contactUs.value, page: () => ContactUsPage()),
+        GetPage(name: Pages.galleryFull.value, page: () => GalleryFullPage()),
       ];
 }
 
@@ -111,7 +113,7 @@ enum Pages {
   designDetails,
   stylesDetails,
   noInternet,
-  contactUs
+  contactUs,galleryFull
 }
 
 extension PagesExtension on Pages {
@@ -146,7 +148,8 @@ extension PagesExtension on Pages {
       case Pages.noInternet:
         return '/noInternet';
       case Pages.contactUs:
-        return '/contactUs';
+        return '/contactUs';      case Pages.galleryFull:
+        return '/galleryFull';
       default:
         throw 'unnamed route';
     }
@@ -185,7 +188,8 @@ abstract class Navigation {
       case '/noInternet':
         return Pages.noInternet;
       case '/contactUs':
-        return Pages.contactUs;
+        return Pages.contactUs;      case '/galleryFull':
+        return Pages.galleryFull;
       default:
         return null;
     }

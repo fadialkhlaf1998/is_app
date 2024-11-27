@@ -9,7 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CustomBottomBar extends StatelessWidget {
-  CustomBottomBar({Key? key}) : super(key: key);
+
+  final bool isMainPage;
+  CustomBottomBar({Key? key,required this.isMainPage}) : super(key: key);
   final ProfileController profileController = Get.find();
   final MainPageController mainPageController = Get.find();
   final CartController cartController = Get.find();
@@ -42,7 +44,7 @@ class CustomBottomBar extends StatelessWidget {
                     child: Container(
                       child: BottomBarIcon(
                           onTap: () {
-                            mainPageController.moveBetweenPages(0);
+                              mainPageController.moveBetweenPages(0, isMainPage);
                           },
                           image: HOME,
                           select: mainPageController.pageIndex.value == 0
@@ -54,7 +56,7 @@ class CustomBottomBar extends StatelessWidget {
                     child: Container(
                       child: BottomBarIcon(
                           onTap: () async {
-                            mainPageController.moveBetweenPages(1);
+                            mainPageController.moveBetweenPages(1, isMainPage);
                             if (mainPageController.pageIndex.value == 1) {
                               await searchMainPageController.clearSearch();
                             }
@@ -69,8 +71,8 @@ class CustomBottomBar extends StatelessWidget {
                     child: Container(
                       child: BottomBarIcon(
                           onTap: () {
-                            mainPageController.moveBetweenPages(2);
-                          },
+                            mainPageController.moveBetweenPages(2, isMainPage);
+                            },
                           image: GALLERY,
                           select: mainPageController.pageIndex.value == 2
                               ? true
@@ -81,7 +83,7 @@ class CustomBottomBar extends StatelessWidget {
                     child: Container(
                       child: BottomBarIcon(
                         onTap: () async {
-                          mainPageController.moveBetweenPages(3);
+                          mainPageController.moveBetweenPages(3, isMainPage);
                           if (mainPageController.pageIndex.value == 3) {
                             await cartController.getCartRequest();
                           }
@@ -98,7 +100,7 @@ class CustomBottomBar extends StatelessWidget {
                       child: Container(
                     child: BottomBarIcon(
                         onTap: () {
-                          mainPageController.moveBetweenPages(4);
+                          mainPageController.moveBetweenPages(4, isMainPage);
                           profileController.closeAllMenu();
                         },
                         image: PROFILE,

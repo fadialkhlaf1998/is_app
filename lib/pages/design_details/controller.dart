@@ -9,6 +9,7 @@ import 'package:is_app/data/repository/guest_repo.dart';
 import 'package:is_app/extensions/context_localization.dart';
 import 'package:is_app/pages/cart/controller.dart';
 import 'package:is_app/pages/home_page/controller.dart';
+import 'package:is_app/pages/main_page/controller.dart';
 import 'package:is_app/widgets/snack_bar/top_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -17,6 +18,7 @@ class DesignDetailsController extends GetxController {
   GuestRepo guestRepo = GuestRepo();
   CartRepo cartRepo = CartRepo();
   CartController cartController = Get.find();
+  MainPageController mainPageController = Get.find();
 
   CarouselSliderController carouselSliderController =
       CarouselSliderController();
@@ -26,10 +28,13 @@ class DesignDetailsController extends GetxController {
   DesignResponse selectDesignDetails = DesignResponse();
   RxList<String> designImages = <String>[].obs;
   Rx<Moodboards> chosenMoodboardData = Moodboards().obs;
+  RxInt insertId = 0.obs;
 
   RxInt currentImageSliderIndex = 0.obs;
   RxBool loading = false.obs;
   RxBool loadingAdd = false.obs;
+  RxBool showContinuePopUp = false.obs;
+  RxBool goLoading = false.obs;
   RxInt chosenMoodboardDesignId = (-1).obs;
 
   getDesignDetailsRequest() async {
@@ -56,7 +61,6 @@ class DesignDetailsController extends GetxController {
     } else {
       designImages.clear();
       chosenMoodboardData.value = Moodboards();
-      carouselSliderController.animateToPage(0);
       if (chosenMoodboardDesignId.value ==
           selectDesignDetails.moodboards![index].moodboardDesignId) {
         chosenMoodboardDesignId.value = -1;
@@ -70,6 +74,9 @@ class DesignDetailsController extends GetxController {
         currentImageSliderIndex.value = 0;
         chosenMoodboardData.value = selectDesignDetails.moodboards![index];
       }
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        carouselSliderController.animateToPage(0);
+      });
     }
 
     print(chosenMoodboardDesignId.value);
@@ -99,11 +106,13 @@ class DesignDetailsController extends GetxController {
             print('*********');
             print(value.data["insertId"]);
             loadingAdd.value = false;
+            insertId.value = value.data["insertId"];
             await AppStorage.saveBadgeStatus(true);
             initController.showBadge.value = true;
-            cartController.getCartItemDetailsFromDesign(selectDesignDetails,
-                value.data["insertId"], chosenMoodboardData.value);
-            Get.offNamed('/cartDesignInfo');
+            /// --------------
+            showContinuePopUp.value = true;
+
+            /// -------------
             TopSnackBar.success(
                 context, context.localizations.add_to_cart_success);
           } else {
@@ -113,6 +122,25 @@ class DesignDetailsController extends GetxController {
         });
       }
     }
+  }
+
+
+  noOption(){
+    cartController.getCartItemDetailsFromDesign(selectDesignDetails,
+        insertId.value, chosenMoodboardData.value);
+    Get.offNamed('/cartDesignInfo');
+  }
+
+
+  goOption() async {
+    goLoading.value = true;
+    await cartController.getCartRequest().then((value) async {
+      print('------> $value');
+      Get.back();
+      await mainPageController.moveBetweenPages(3, false);
+      goLoading.value = false;
+    });
+
   }
 
   @override

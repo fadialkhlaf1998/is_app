@@ -68,7 +68,9 @@ class GalleryPage extends StatelessWidget {
         itemBuilder: (BuildContext context, index) {
           return GestureDetector(
             onTap: () {
-              Get.toNamed('/customPhotoView', arguments: index);
+              // Get.toNamed('/customPhotoView', arguments: index);
+              galleryController.currentIndex.value = index;
+              Get.toNamed('/galleryFull');
             },
             child: Hero(
               tag: 'gallery_image $index',

@@ -6,6 +6,7 @@ import 'package:is_app/pages/styles_details/widgets/custom_filter_bottom_sheet_s
 import 'package:is_app/pages/styles_details/widgets/styles_design_card.dart';
 import 'package:is_app/res/color.dart';
 import 'package:is_app/res/styles.dart';
+import 'package:is_app/widgets/bottom_bar/custom_bottom_bar.dart';
 import 'package:is_app/widgets/empty/empty_list.dart';
 import 'package:is_app/widgets/loading/custom_loading.dart';
 import 'package:is_app/widgets/text_field/custom_text_field.dart';
@@ -21,6 +22,7 @@ class StylesDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       return Scaffold(
+        bottomNavigationBar: CustomBottomBar(isMainPage: false),
         backgroundColor: white,
         appBar: AppBar(
           title: Text(homeController.selectStylesName.value,

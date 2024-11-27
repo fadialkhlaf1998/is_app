@@ -6,6 +6,7 @@ import 'package:is_app/pages/category_details/widgets/design_card.dart';
 import 'package:is_app/pages/home_page/controller.dart';
 import 'package:is_app/res/color.dart';
 import 'package:is_app/res/styles.dart';
+import 'package:is_app/widgets/bottom_bar/custom_bottom_bar.dart';
 import 'package:is_app/widgets/empty/empty_list.dart';
 import 'package:is_app/widgets/loading/custom_loading.dart';
 import 'package:is_app/widgets/text_field/custom_text_field.dart';
@@ -22,6 +23,7 @@ class CategoryDetailsPage extends StatelessWidget {
     return Obx(() {
       return Scaffold(
         backgroundColor: white,
+        bottomNavigationBar: CustomBottomBar(isMainPage: false),
         appBar: AppBar(
           title: Text(homeController.selectCategoryName.value,
               style: textStyleForTitle),

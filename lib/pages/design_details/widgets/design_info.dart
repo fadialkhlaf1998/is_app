@@ -1,4 +1,5 @@
 import 'package:is_app/controller/constant.dart';
+import 'package:is_app/extensions/context_localization.dart';
 import 'package:is_app/pages/design_details/controller.dart';
 import 'package:is_app/res/styles.dart';
 import 'package:is_app/widgets/loading/loading_container.dart';
@@ -33,7 +34,7 @@ class DesignInfo extends StatelessWidget {
           const SizedBox(height: 5),
           !designDetailsController.loading.value
               ? Text(
-                  '${designDetailsController.selectDesignDetails.price} SAR',
+                  '${designDetailsController.selectDesignDetails.price} SAR  (${context.localizations.tax})',
                   style: textStyleForListTitle,
                 )
               : LoadingContainer(width: 0.15, height: 0.025),

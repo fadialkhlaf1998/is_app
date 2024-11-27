@@ -2,6 +2,7 @@ import 'package:is_app/controller/constant.dart';
 import 'package:is_app/controller/init_controller.dart';
 import 'package:is_app/extensions/context_localization.dart';
 import 'package:is_app/pages/design_details/controller.dart';
+import 'package:is_app/pages/design_details/widgets/custom_pop_up.dart';
 import 'package:is_app/pages/design_details/widgets/design_info.dart';
 import 'package:is_app/pages/design_details/widgets/loading_moodboard_list.dart';
 import 'package:is_app/pages/design_details/widgets/moodboards_list.dart';
@@ -10,6 +11,7 @@ import 'package:is_app/res/color.dart';
 import 'package:is_app/res/styles.dart';
 import 'package:is_app/widgets/button/custom_button.dart';
 import 'package:is_app/widgets/loading/loading_container.dart';
+import 'package:is_app/widgets/pop_up/custom_pop_up.dart';
 import 'package:is_app/widgets/snack_bar/top_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -47,9 +49,10 @@ class DesignDetailsPage extends StatelessWidget {
                     color: black, size: 20)),
           ),
         ),
-        bottomNavigationBar: Container(
+        bottomNavigationBar: AnimatedContainer(
+          duration: Duration(milliseconds: 350),
           width: Get.width,
-          height: Get.height * 0.09,
+          height: designDetailsController.showContinuePopUp.value ? 0 : Get.height * 0.09,
           decoration: BoxDecoration(
             color: white,
             borderRadius: const BorderRadius.only(
@@ -82,40 +85,52 @@ class DesignDetailsPage extends StatelessWidget {
           ),
         ),
         body: SafeArea(
-            child: SizedBox(
-          height: Get.height - Constant.removeSpaces(context),
-          child: GlowingOverscrollIndicator(
-            showLeading: false,
-            showTrailing: false,
-            color: Colors.transparent,
-            axisDirection: AxisDirection.down,
-            child: SingleChildScrollView(
-              child: Container(
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                SizedBox(
+                          height: Get.height - Constant.removeSpaces(context),
+                          child: GlowingOverscrollIndicator(
+                showLeading: false,
+                showTrailing: false,
                 color: Colors.transparent,
-                width: Get.width,
-                padding: EdgeInsets.only(bottom: 20),
-                // height: Get.height - (Get.height * 0.16),
-                child: Column(
-                  children: [
-                    AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 800),
-                      child: designDetailsController.loading.value
-                          ? const LoadingContainer(width: 1, height: 0.45)
-                          : DesignSliderImage(),
+                axisDirection: AxisDirection.down,
+                child: SingleChildScrollView(
+                  child: Container(
+                    color: Colors.transparent,
+                    width: Get.width,
+                    padding: EdgeInsets.only(bottom: 20),
+                    // height: Get.height - (Get.height * 0.16),
+                    child: Column(
+                      children: [
+                        AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 800),
+                          child: designDetailsController.loading.value
+                              ? const LoadingContainer(width: 1, height: 0.45)
+                              : DesignSliderImage(),
+                        ),
+                        AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 800),
+                          child: designDetailsController.loading.value
+                              ? const LoadingMoodboardList()
+                              : MoodboardsList(),
+                        ),
+                        DesignInfo(),
+                      ],
                     ),
-                    AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 800),
-                      child: designDetailsController.loading.value
-                          ? const LoadingMoodboardList()
-                          : MoodboardsList(),
-                    ),
-                    DesignInfo(),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-          ),
-        )),
+                          ),
+                        ),
+                CustomPopUp(
+                    open: designDetailsController.showContinuePopUp.value,
+                    outSideOnTap: (){
+                      designDetailsController.showContinuePopUp.value = false;
+                    },
+                    child: CustomContinuePopUp(),
+                )
+              ],
+            )),
       );
     });
   }

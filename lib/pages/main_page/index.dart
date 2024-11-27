@@ -26,7 +26,7 @@ class MainPage extends StatelessWidget {
         // return false;
       },
       child: Scaffold(
-        bottomNavigationBar: CustomBottomBar(),
+        bottomNavigationBar: CustomBottomBar(isMainPage: true),
         body: SafeArea(
           child: PageView(
             physics: const NeverScrollableScrollPhysics(),

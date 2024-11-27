@@ -26,7 +26,7 @@ class CartController extends GetxController {
 
   RxInt cartIndexDelete = (-1).obs;
 
-  getCartRequest() async {
+  Future<bool> getCartRequest() async {
     if (initController.checkUserIfLogin()) {
       cartList.clear();
       loading.value = true;
@@ -36,13 +36,15 @@ class CartController extends GetxController {
               .map((e) => Cart.fromJson(e))
               .toList());
           myCart = CartResponse.fromJson(value.data);
-          // await discoverNewDesign();
           loading.value = false;
+          return true;
         } else {
           loading.value = false;
+          return false;
         }
       });
     }
+    return true;
   }
 
   discoverNewDesign() async {

@@ -81,7 +81,11 @@
   "tax": "Price includes tax",
   "contact_us": "Contact us",
   "must_chose_moodboard": "You must choose the moodboard color before adding to the cart",
-  "no_option": "There are no option currently"
+  "no_option": "There are no option currently",
+  "chose_color": "Please choose your preferred color",
+  "design_add_to_cart_success": "Design has been added to cart successfully",
+  "continue_shopping": "Continue shopping",
+  "go_to_cart": "Go to cart"
 
 
 }

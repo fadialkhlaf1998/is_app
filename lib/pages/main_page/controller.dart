@@ -14,20 +14,25 @@ class MainPageController extends GetxController {
   bool backButtonStatus = false;
   DateTime timeBackPressed = DateTime.now();
 
-  moveBetweenPages(index) async {
+  moveBetweenPages(index, isMainPage) async {
     if (index == 3) {
       initController.showBadge.value = false;
-      AppStorage.saveBadgeStatus(false);
+      await AppStorage.saveBadgeStatus(false);
     }
     pageIndex.value = index;
     pageController.animateToPage(index,
         duration: const Duration(milliseconds: 600),
         curve: Curves.fastOutSlowIn);
+    if(isMainPage == false){
+      Get.back();
+    }
   }
+
+
 
   Future<bool> backButton(BuildContext context) async {
     if (pageIndex.value != 0) {
-      moveBetweenPages(0);
+      moveBetweenPages(0, true);
       return false;
     } else {
       final difference = DateTime.now().difference(timeBackPressed);
