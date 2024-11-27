@@ -113,7 +113,8 @@ enum Pages {
   designDetails,
   stylesDetails,
   noInternet,
-  contactUs,galleryFull
+  contactUs,
+  galleryFull
 }
 
 extension PagesExtension on Pages {
@@ -148,7 +149,8 @@ extension PagesExtension on Pages {
       case Pages.noInternet:
         return '/noInternet';
       case Pages.contactUs:
-        return '/contactUs';      case Pages.galleryFull:
+        return '/contactUs';
+      case Pages.galleryFull:
         return '/galleryFull';
       default:
         throw 'unnamed route';
@@ -188,7 +190,8 @@ abstract class Navigation {
       case '/noInternet':
         return Pages.noInternet;
       case '/contactUs':
-        return Pages.contactUs;      case '/galleryFull':
+        return Pages.contactUs;
+      case '/galleryFull':
         return Pages.galleryFull;
       default:
         return null;

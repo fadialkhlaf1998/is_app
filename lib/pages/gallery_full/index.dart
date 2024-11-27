@@ -6,9 +6,8 @@ import 'package:is_app/res/color.dart';
 import 'package:photo_view/photo_view.dart';
 
 class GalleryFullPage extends StatelessWidget {
-
-   GalleryFullPage({super.key});
-   final GalleryController galleryController = Get.find();
+  GalleryFullPage({super.key});
+  final GalleryController galleryController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +26,13 @@ class GalleryFullPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: PageView.builder(
-          controller: PageController(initialPage: galleryController.currentIndex.value),
+          controller:
+              PageController(initialPage: galleryController.currentIndex.value),
           onPageChanged: (index) {
             galleryController.currentIndex.value = index;
           },
           itemCount: galleryController.galleryList.length,
-          itemBuilder: (BuildContext context, index){
+          itemBuilder: (BuildContext context, index) {
             return Hero(
               tag: 'gallery_image $index',
               child: SizedBox(
@@ -46,8 +46,10 @@ class GalleryFullPage extends StatelessWidget {
                       child: CircularProgressIndicator(
                         value: event == null
                             ? null
-                            : event.cumulativeBytesLoaded / (event.expectedTotalBytes ?? 1),
-                        valueColor: AlwaysStoppedAnimation<Color>(primaryColor), // Customize color
+                            : event.cumulativeBytesLoaded /
+                                (event.expectedTotalBytes ?? 1),
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                            primaryColor), // Customize color
                       ),
                     );
                   },

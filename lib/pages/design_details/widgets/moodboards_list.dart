@@ -15,7 +15,7 @@ class MoodboardsList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.only(bottom: 5, top: 15, right: 10,left: 10),
+          padding: EdgeInsets.only(bottom: 5, top: 15, right: 10, left: 10),
           child: Text(context.localizations.chose_color),
         ),
         Container(
@@ -65,7 +65,8 @@ class MoodboardsList extends StatelessWidget {
                               height: Get.width * 0.05,
                               child: CircularProgressIndicator(
                                 color: primaryColor,
-                                value: loadingProgress.expectedTotalBytes != null
+                                value: loadingProgress.expectedTotalBytes !=
+                                        null
                                     ? loadingProgress.cumulativeBytesLoaded /
                                         loadingProgress.expectedTotalBytes!
                                     : null,

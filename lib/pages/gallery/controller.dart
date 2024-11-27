@@ -27,7 +27,6 @@ class GalleryController extends GetxController {
     });
   }
 
-
   void scrollToIndex(int index) {
     Future.delayed(Duration(milliseconds: 300), () {
       scrollController.animateTo(

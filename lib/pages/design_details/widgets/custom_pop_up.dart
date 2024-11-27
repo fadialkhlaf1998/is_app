@@ -7,7 +7,7 @@ import 'package:is_app/res/styles.dart';
 import 'package:is_app/widgets/button/custom_button.dart';
 
 class CustomContinuePopUp extends StatelessWidget {
-   CustomContinuePopUp({super.key});
+  CustomContinuePopUp({super.key});
   final DesignDetailsController designDetailsController = Get.find();
 
   @override
@@ -43,7 +43,7 @@ class CustomContinuePopUp extends StatelessWidget {
                   height: 0.06,
                   color: secondaryColor,
                   title: context.localizations.continue_shopping,
-                  onTap:(){
+                  onTap: () {
                     designDetailsController.noOption();
                   },
                   borderRadiusBottomLeft: 20,
@@ -51,22 +51,22 @@ class CustomContinuePopUp extends StatelessWidget {
                   borderRadiusTopLeft: 0,
                   borderRadiusTopRight: 0,
                   textStyle: textStyleForNormalColorText),
-             Obx((){
-               return  CustomButton(
-                   width: 0.45,
-                   height: 0.06,
-                   color: primaryColor,
-                   borderRadiusBottomLeft: 0,
-                   borderRadiusBottomRight: 20,
-                   borderRadiusTopLeft: 0,
-                   borderRadiusTopRight: 0,
-                   title: context.localizations.go_to_cart,
-                   loading: designDetailsController.goLoading.value,
-                   onTap:()async {
-                     await designDetailsController.goOption();
-                   },
-                   textStyle: textStyleForNormalText);
-             }),
+              Obx(() {
+                return CustomButton(
+                    width: 0.45,
+                    height: 0.06,
+                    color: primaryColor,
+                    borderRadiusBottomLeft: 0,
+                    borderRadiusBottomRight: 20,
+                    borderRadiusTopLeft: 0,
+                    borderRadiusTopRight: 0,
+                    title: context.localizations.go_to_cart,
+                    loading: designDetailsController.goLoading.value,
+                    onTap: () async {
+                      await designDetailsController.goOption();
+                    },
+                    textStyle: textStyleForNormalText);
+              }),
             ],
           ),
         ],

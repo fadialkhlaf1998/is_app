@@ -52,7 +52,9 @@ class DesignDetailsPage extends StatelessWidget {
         bottomNavigationBar: AnimatedContainer(
           duration: Duration(milliseconds: 350),
           width: Get.width,
-          height: designDetailsController.showContinuePopUp.value ? 0 : Get.height * 0.09,
+          height: designDetailsController.showContinuePopUp.value
+              ? 0
+              : Get.height * 0.09,
           decoration: BoxDecoration(
             color: white,
             borderRadius: const BorderRadius.only(
@@ -86,11 +88,11 @@ class DesignDetailsPage extends StatelessWidget {
         ),
         body: SafeArea(
             child: Stack(
-              alignment: Alignment.center,
-              children: [
-                SizedBox(
-                          height: Get.height - Constant.removeSpaces(context),
-                          child: GlowingOverscrollIndicator(
+          alignment: Alignment.center,
+          children: [
+            SizedBox(
+              height: Get.height - Constant.removeSpaces(context),
+              child: GlowingOverscrollIndicator(
                 showLeading: false,
                 showTrailing: false,
                 color: Colors.transparent,
@@ -120,17 +122,17 @@ class DesignDetailsPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                          ),
-                        ),
-                CustomPopUp(
-                    open: designDetailsController.showContinuePopUp.value,
-                    outSideOnTap: (){
-                      designDetailsController.showContinuePopUp.value = false;
-                    },
-                    child: CustomContinuePopUp(),
-                )
-              ],
-            )),
+              ),
+            ),
+            CustomPopUp(
+              open: designDetailsController.showContinuePopUp.value,
+              outSideOnTap: () {
+                designDetailsController.showContinuePopUp.value = false;
+              },
+              child: CustomContinuePopUp(),
+            )
+          ],
+        )),
       );
     });
   }

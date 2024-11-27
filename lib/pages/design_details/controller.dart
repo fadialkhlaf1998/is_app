@@ -109,6 +109,7 @@ class DesignDetailsController extends GetxController {
             insertId.value = value.data["insertId"];
             await AppStorage.saveBadgeStatus(true);
             initController.showBadge.value = true;
+
             /// --------------
             showContinuePopUp.value = true;
 
@@ -124,13 +125,11 @@ class DesignDetailsController extends GetxController {
     }
   }
 
-
-  noOption(){
-    cartController.getCartItemDetailsFromDesign(selectDesignDetails,
-        insertId.value, chosenMoodboardData.value);
+  noOption() {
+    cartController.getCartItemDetailsFromDesign(
+        selectDesignDetails, insertId.value, chosenMoodboardData.value);
     Get.offNamed('/cartDesignInfo');
   }
-
 
   goOption() async {
     goLoading.value = true;
@@ -140,7 +139,6 @@ class DesignDetailsController extends GetxController {
       await mainPageController.moveBetweenPages(3, false);
       goLoading.value = false;
     });
-
   }
 
   @override

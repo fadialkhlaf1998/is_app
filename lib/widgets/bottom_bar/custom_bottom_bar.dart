@@ -9,9 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CustomBottomBar extends StatelessWidget {
-
   final bool isMainPage;
-  CustomBottomBar({Key? key,required this.isMainPage}) : super(key: key);
+  CustomBottomBar({Key? key, required this.isMainPage}) : super(key: key);
   final ProfileController profileController = Get.find();
   final MainPageController mainPageController = Get.find();
   final CartController cartController = Get.find();
@@ -44,7 +43,7 @@ class CustomBottomBar extends StatelessWidget {
                     child: Container(
                       child: BottomBarIcon(
                           onTap: () {
-                              mainPageController.moveBetweenPages(0, isMainPage);
+                            mainPageController.moveBetweenPages(0, isMainPage);
                           },
                           image: HOME,
                           select: mainPageController.pageIndex.value == 0
@@ -72,7 +71,7 @@ class CustomBottomBar extends StatelessWidget {
                       child: BottomBarIcon(
                           onTap: () {
                             mainPageController.moveBetweenPages(2, isMainPage);
-                            },
+                          },
                           image: GALLERY,
                           select: mainPageController.pageIndex.value == 2
                               ? true

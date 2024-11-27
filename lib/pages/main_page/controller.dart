@@ -23,12 +23,10 @@ class MainPageController extends GetxController {
     pageController.animateToPage(index,
         duration: const Duration(milliseconds: 600),
         curve: Curves.fastOutSlowIn);
-    if(isMainPage == false){
+    if (isMainPage == false) {
       Get.back();
     }
   }
-
-
 
   Future<bool> backButton(BuildContext context) async {
     if (pageIndex.value != 0) {
