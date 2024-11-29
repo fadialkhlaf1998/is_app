@@ -83,9 +83,7 @@ class CustomBottomBar extends StatelessWidget {
                       child: BottomBarIcon(
                         onTap: () async {
                           mainPageController.moveBetweenPages(3, isMainPage);
-                          if (mainPageController.pageIndex.value == 3) {
-                            await cartController.getCartRequest();
-                          }
+                          await cartController.getCartRequest();
                         },
                         image: CART,
                         select: mainPageController.pageIndex.value == 3

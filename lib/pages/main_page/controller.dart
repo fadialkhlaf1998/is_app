@@ -1,6 +1,7 @@
 import 'package:is_app/controller/app_storage.dart';
 import 'package:is_app/controller/init_controller.dart';
 import 'package:is_app/extensions/context_localization.dart';
+import 'package:is_app/pages/cart/controller.dart';
 import 'package:is_app/res/color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 class MainPageController extends GetxController {
   final pageController = PageController(initialPage: 0);
   final InitController initController = Get.find();
+
   RxInt pageIndex = 0.obs;
 
   bool backButtonStatus = false;

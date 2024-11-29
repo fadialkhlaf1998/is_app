@@ -114,8 +114,8 @@ class DesignDetailsController extends GetxController {
             showContinuePopUp.value = true;
 
             /// -------------
-            TopSnackBar.success(
-                context, context.localizations.add_to_cart_success);
+            // TopSnackBar.success(
+            //     context, context.localizations.add_to_cart_success);
           } else {
             loadingAdd.value = false;
             TopSnackBar.warning(context, context.localizations.something_wrong);
