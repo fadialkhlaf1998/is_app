@@ -85,12 +85,8 @@
   "chose_color": "الرجاء اختيار اللون المفضل",
   "design_add_to_cart_success": "تمت إضافة التصميم إلى السلة بنجاح",
   "continue_shopping": "متابعة التسوق",
-  "go_to_cart": "اذهب إلى السلة"
-
-
-
-
-
-
-
+  "go_to_cart": "اذهب إلى السلة",
+  "full_payment": "دفعة كاملة",
+  "installment_payment": "الدفع بالتقسيط",
+  "more_details": "تفاصيل أكثر"
 }

@@ -50,9 +50,12 @@ class CartRepo {
     );
   }
 
-  Future<ApiResponse> checkout() async {
+  Future<ApiResponse> checkout(String paymentMethod) async {
     return await dioClient.postRequest(
       CHECKOUT,
+      data: {
+        "payment_method":paymentMethod
+      },
       options: Options(headers: {
         "Authorization": "bearer ${initController.userData.token}"
       }),

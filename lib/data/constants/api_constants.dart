@@ -2,7 +2,7 @@
 
 /// ---------------- Base URL -------------- ////
 
-const String baseUrl = "https://phpstack-1369545-5048388.cloudwaysapps.com";
+const String baseUrl = "";
 
 /// -------------- GUEST -------------------///
 
@@ -16,6 +16,8 @@ const String SEARCH = "/api/mobile/search";
 
 const String LOGIN = "/api/account/mobile/login";
 const String SIGNUP = "/api/account/mobile/signup";
+const String FORGOT_PASSWORD = "/api/account/forgot-password";
+const String VRIFICATION_CODE = "/api/account/mobile/verification-code";
 
 /// -------------- CART -------------------///
 

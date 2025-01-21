@@ -1,3 +1,5 @@
+import 'package:is_app/data/models/response/guest/design_details_response.dart';
+
 class OrderDetailsResponse {
   int? orderId;
   double? total;
@@ -72,6 +74,8 @@ class OrderItems {
   int? styleId;
   int? price;
   String? stringFiles;
+  Moodboards? moodboard;
+
 
   OrderItems(
       {this.orderItemId,
@@ -90,7 +94,9 @@ class OrderItems {
       this.categoryId,
       this.styleId,
       this.price,
-      this.stringFiles});
+      this.stringFiles,
+      this.moodboard
+      });
 
   OrderItems.fromJson(Map<String, dynamic> json) {
     orderItemId = json['order_item_id'];
@@ -110,6 +116,9 @@ class OrderItems {
     styleId = json['style_id'];
     price = json['price'];
     stringFiles = json['string_files'];
+    moodboard = json['moodboard'] != null
+        ? Moodboards.fromJson(json['moodboard'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {

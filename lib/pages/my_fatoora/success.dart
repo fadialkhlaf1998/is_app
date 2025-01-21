@@ -13,7 +13,12 @@ class _SuccessPaymentState extends State<SuccessPayment> {
   void initState() {
     super.initState();
     Future.delayed(Duration(milliseconds: 5000)).then((value) {
-      Get.offAllNamed('/mainPage');
+      // Get.offAllNamed('/mainPage');
+      //
+      // Future.delayed(Duration(milliseconds: 1000)).then((value) {
+      //
+      // });
+      Get.offNamed('/orderHistory');
     });
   }
 

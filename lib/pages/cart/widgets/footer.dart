@@ -3,6 +3,7 @@ import 'package:is_app/extensions/context_localization.dart';
 import 'package:is_app/pages/cart/controller.dart';
 import 'package:is_app/pages/my_fatoora/fail.dart';
 import 'package:is_app/pages/my_fatoora/index.dart';
+import 'package:is_app/pages/my_fatoora/payment_options_page.dart';
 import 'package:is_app/pages/my_fatoora/success.dart';
 import 'package:is_app/res/color.dart';
 import 'package:is_app/res/styles.dart';
@@ -59,7 +60,7 @@ class Footer extends StatelessWidget {
                   /// todo
                   /// my fatoora
                   // await cartController.checkoutRequest(context);
-                  Get.to(PaymentPage(cartController.myCart.total!.toString()));
+                  Get.to(PaymentOptionsPage(cartController.myCart.total!.toString()));
                 },
                 textStyle: textStyleForButton)
           ],

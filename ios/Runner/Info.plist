@@ -16,6 +16,7 @@
 	<string>is_app</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
@@ -28,9 +29,9 @@
 	<string>LaunchScreen</string>
 
     <key>NSPhotoLibraryUsageDescription</key>
-    <string>We need access to photo to upload you room photos to help us design your room</string>
-    <key>NSCameraUsageDescription </key>
-    <string>We need access to camera to upload you room photos to help us design your room</string>
+    <string>We need access to photo to upload you room photos to help us design your room and This allows Tabby to select a photo</string>
+    <key>NSCameraUsageDescription</key>
+    <string>We need access to camera to upload you room photos to help us design your room and This allows Tabby to take a photo</string>
     <key>NSMicrophoneUsageDescription</key>
     <string>We need access to microphone to upload you room video and explain us about your room</string>
 

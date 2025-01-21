@@ -5,6 +5,7 @@ import 'package:is_app/res/styles.dart';
 import 'package:is_app/widgets/loading/loading_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tabby_flutter_inapp_sdk/tabby_flutter_inapp_sdk.dart';
 
 class DesignInfo extends StatelessWidget {
   DesignInfo({Key? key}) : super(key: key);
@@ -39,6 +40,7 @@ class DesignInfo extends StatelessWidget {
                 )
               : LoadingContainer(width: 0.15, height: 0.025),
           const SizedBox(height: 10),
+
           !designDetailsController.loading.value
               ? Text(
                   Constant.isEnglish()
@@ -51,6 +53,14 @@ class DesignInfo extends StatelessWidget {
                   style: textStyleForListTitle,
                 )
               : LoadingContainer(width: 0.8, height: 0.15),
+          const SizedBox(height: 10),
+          designDetailsController.loading.value?Center():
+          TabbyPresentationSnippet(
+            price: designDetailsController.selectDesignDetails.price!.toString(),
+            currency: Currency.sar,
+            lang: Constant.isEnglish()?Lang.en:Lang.ar,
+          ),
+          const SizedBox(height: 10),
         ],
       ),
     );

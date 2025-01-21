@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'dart:developer';
 
 import 'package:is_app/controller/app_storage.dart';
 import 'package:is_app/controller/init_controller.dart';
@@ -31,6 +32,7 @@ class CartController extends GetxController {
       cartList.clear();
       loading.value = true;
       await cartRepo.getCart().then((value) async {
+        // log(value.data.toString());
         if (value.code == 1) {
           cartList.addAll((value.data['cart'] as List)
               .map((e) => Cart.fromJson(e))
@@ -125,30 +127,30 @@ class CartController extends GetxController {
         moodboard: moodboardDetails);
   }
 
-  checkoutRequest(BuildContext context) async {
-    loadingCheck.value = true;
-    await cartRepo.checkout().then((value) async {
-      if (value.code == 1) {
-        TopSnackBar.success(context, 'Done');
-        loadingCheck.value = false;
-        await getCartRequest();
-      } else {
-        loadingCheck.value = false;
-        TopSnackBar.warning(context, context.localizations.something_wrong);
-      }
-    });
-  }
+  // checkoutRequest(BuildContext context) async {
+  //   loadingCheck.value = true;
+  //   await cartRepo.checkout().then((value) async {
+  //     if (value.code == 1) {
+  //       TopSnackBar.success(context, 'Done');
+  //       loadingCheck.value = false;
+  //       await getCartRequest();
+  //     } else {
+  //       loadingCheck.value = false;
+  //       TopSnackBar.warning(context, context.localizations.something_wrong);
+  //     }
+  //   });
+  // }
 
-  alwaysCheckoutRequestToDone() async {
+  alwaysCheckoutRequestToDone(String paymentMethod) async {
     loadingCheck.value = true;
-    await cartRepo.checkout().then((value) async {
+    await cartRepo.checkout(paymentMethod).then((value) async {
       if (value.code == 1) {
         loadingCheck.value = false;
         await getCartRequest();
         return;
       } else {
         loadingCheck.value = false;
-        return await alwaysCheckoutRequestToDone();
+        return await alwaysCheckoutRequestToDone(paymentMethod);
       }
     });
   }

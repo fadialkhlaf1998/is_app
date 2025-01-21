@@ -5,8 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:tabby_flutter_inapp_sdk/tabby_flutter_inapp_sdk.dart';
 
 void main() {
+  // WidgetsFlutterBinding.ensureInitialized();
+
+  TabbySDK().setup(
+    withApiKey: '',
+    // environment: Environment.production,
+  );
+
   runApp(const MyApp());
 }
 

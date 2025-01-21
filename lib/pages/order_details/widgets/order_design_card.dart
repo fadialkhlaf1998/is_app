@@ -27,7 +27,8 @@ class OrderDesignCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(
                     image: NetworkImage(
-                        '$baseUrl/uploads/${orderItems.images!.split(",")[0]}'))),
+
+                        '$baseUrl/uploads/${orderItems.moodboard!.images!.split(',')[0]}'))),
           ),
           const SizedBox(width: 10),
           Column(

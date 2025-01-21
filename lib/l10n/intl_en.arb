@@ -85,7 +85,8 @@
   "chose_color": "Please choose your preferred color",
   "design_add_to_cart_success": "Design has been added to cart successfully",
   "continue_shopping": "Continue shopping",
-  "go_to_cart": "Go to cart"
-
-
+  "go_to_cart": "Go to cart",
+  "full_payment": "Full Payment",
+  "installment_payment": "Installment Payment",
+  "more_details": "More Details"
 }

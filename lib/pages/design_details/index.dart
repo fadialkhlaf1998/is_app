@@ -15,6 +15,7 @@ import 'package:is_app/widgets/pop_up/custom_pop_up.dart';
 import 'package:is_app/widgets/snack_bar/top_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tabby_flutter_inapp_sdk/tabby_flutter_inapp_sdk.dart';
 
 class DesignDetailsPage extends StatelessWidget {
   DesignDetailsPage({Key? key}) : super(key: key);
@@ -105,6 +106,7 @@ class DesignDetailsPage extends StatelessWidget {
                     // height: Get.height - (Get.height * 0.16),
                     child: Column(
                       children: [
+
                         AnimatedSwitcher(
                           duration: const Duration(milliseconds: 800),
                           child: designDetailsController.loading.value
