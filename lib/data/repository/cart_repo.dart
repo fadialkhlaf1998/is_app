@@ -50,11 +50,12 @@ class CartRepo {
     );
   }
 
-  Future<ApiResponse> checkout(String paymentMethod) async {
+  Future<ApiResponse> checkout(String paymentMethod,String? referance_id) async {
     return await dioClient.postRequest(
       CHECKOUT,
       data: {
-        "payment_method":paymentMethod
+        "payment_method":paymentMethod,
+        "referance_id":referance_id == null?"":referance_id
       },
       options: Options(headers: {
         "Authorization": "bearer ${initController.userData.token}"

@@ -73,7 +73,8 @@ class DesignDetailsPage extends StatelessWidget {
             child: CustomButton(
                 width: 0.7,
                 height: 0.05,
-                color: primaryColor,
+                color:
+                designDetailsController.chosenMoodboardDesignId.value == -1?grey:primaryColor,
                 loading: designDetailsController.loadingAdd.value,
                 title: context.localizations.add_to_cart,
                 onTap: () async {

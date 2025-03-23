@@ -1,6 +1,7 @@
 import 'package:is_app/extensions/context_localization.dart';
 import 'package:is_app/pages/login/controller.dart';
 import 'package:is_app/res/color.dart';
+import 'package:is_app/res/styles.dart';
 import 'package:is_app/widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,7 +14,7 @@ class LoginTextFields extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       return SizedBox(
-        height: Get.height * 0.14,
+        height: Get.height * 0.16,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -45,6 +46,19 @@ class LoginTextFields extends StatelessWidget {
               controller: loginController.passwordController,
               labelText: context.localizations.password,
               textInputType: TextInputType.visiblePassword,
+            ),
+            Container(
+              width: Get.width*0.9,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  GestureDetector(
+                    onTap: (){
+                      loginController.forgotPasswordRequest(context);
+                    },
+                      child: Text(context.localizations.forgot_password,style: textStyleForListPrimaryText,))
+                ],
+              ),
             ),
           ],
         ),

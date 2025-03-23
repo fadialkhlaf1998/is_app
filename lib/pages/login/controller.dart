@@ -1,10 +1,12 @@
 import 'package:is_app/controller/app_storage.dart';
 import 'package:is_app/controller/constant.dart';
 import 'package:is_app/controller/init_controller.dart';
+import 'package:is_app/data/models/body/auth/forgot_password_body.dart';
 import 'package:is_app/data/models/body/auth/login_body.dart';
 import 'package:is_app/data/models/response/auth/user_data.dart';
 import 'package:is_app/data/repository/auth_repo.dart';
 import 'package:is_app/extensions/context_localization.dart';
+import 'package:is_app/pages/veridication_code/index.dart';
 import 'package:is_app/widgets/snack_bar/top_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,19 +40,43 @@ class LoginController extends GetxController {
                 UserData.fromJson(value.data));
             await AppStorage.saveEmailPassword(
                 emailController.text, passwordController.text);
-            TopSnackBar.success(
-                context, context.localizations.login_successfully);
-            loading.value = false;
-            Get.offAllNamed('/mainPage');
+            if(initController.userData.is_active == 0){
+              Get.offAll(VerificationCodePage());
+            }else{
+              TopSnackBar.success(
+                  context, context.localizations.login_successfully);
+
+              Get.offAllNamed('/mainPage');
+            }
           } else {
-            loading.value = false;
             TopSnackBar.warning(context, value.data['message']);
           }
+          loading.value = false;
         });
       } else {
         TopSnackBar.warning(
             context, context.localizations.valid_password_login);
       }
+    } else {
+      TopSnackBar.warning(context, context.localizations.valid_email);
+    }
+  }
+  forgotPasswordRequest(BuildContext context) async {
+    Constant.closeKeyBoard();
+    if (checkEmail(emailController.text)) {
+      loading.value = true;
+      await authRepo
+          .forgotPassword(ForgotPasswordBody(
+        email: emailController.text
+      ))
+          .then((value) async {
+        if (value.code == 1) {
+          TopSnackBar.success(context, context.localizations.we_sent_an_email_please_check_your_email);
+        } else {
+          TopSnackBar.warning(context, value.data['message']);
+        }
+        loading.value = false;
+      });
     } else {
       TopSnackBar.warning(context, context.localizations.valid_email);
     }

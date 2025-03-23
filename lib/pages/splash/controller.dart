@@ -4,6 +4,7 @@ import 'package:is_app/data/models/body/auth/login_body.dart';
 import 'package:is_app/data/models/response/auth/user_data.dart';
 import 'package:is_app/data/repository/auth_repo.dart';
 import 'package:get/get.dart';
+import 'package:is_app/pages/veridication_code/index.dart';
 
 class SplashController extends GetxController {
   AuthRepo authRepo = AuthRepo();
@@ -22,9 +23,12 @@ class SplashController extends GetxController {
       print('Hi from here!!');
       String email = await AppStorage.getUserEmail();
       String password = await AppStorage.getUserPassword();
+      print(email);
+      print(password);
       await authRepo
           .login(LoginBody(username: email, password: password))
           .then((value) async {
+        print(value.data);
         if (value.code == 1) {
           print('done___________>');
           initController.userData = UserData.fromJson(value.data);
@@ -40,7 +44,14 @@ class SplashController extends GetxController {
       initController.userData = UserData(token: '');
     }
     await Future.delayed(const Duration(milliseconds: 1500)).then((value) {
-      Get.offAllNamed('/mainPage');
+      print('*************************************');
+      print(initController.userData.toString());
+      if(initController.userData.is_active!=null && initController.userData.is_active == 0){
+        Get.offAll(VerificationCodePage());
+      }else{
+        Get.offAllNamed('/mainPage');
+      }
+
     });
   }
 }

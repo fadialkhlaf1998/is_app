@@ -11,6 +11,7 @@ import 'package:is_app/widgets/button/custom_button.dart';
 import 'package:is_app/widgets/loading/loading_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tabby_flutter_inapp_sdk/tabby_flutter_inapp_sdk.dart';
 
 class Footer extends StatelessWidget {
   Footer({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class Footer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       return Container(
-        height: Get.height * 0.24,
+        height: 270,
         width: Get.width,
         padding:
             const EdgeInsets.only(right: 10, left: 10, top: 10, bottom: 15),
@@ -40,6 +41,11 @@ class Footer extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            TabbyPresentationSnippet(
+              price: cartController.myCart.total.toString(),
+              currency: Currency.sar,
+              lang: Constant.isEnglish()?Lang.en:Lang.ar,
+            ),
             _cartRow(context.localizations.sub_total,
                 cartController.myCart.subTotal.toString()),
             _cartRow(context.localizations.discount,
@@ -50,6 +56,7 @@ class Footer extends StatelessWidget {
                 cartController.myCart.total.toString()),
             Text(context.localizations.tax),
             const SizedBox(height: 5),
+
             CustomButton(
                 width: 0.7,
                 height: 0.05,

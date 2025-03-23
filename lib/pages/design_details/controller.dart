@@ -128,7 +128,8 @@ class DesignDetailsController extends GetxController {
   noOption() {
     cartController.getCartItemDetailsFromDesign(
         selectDesignDetails, insertId.value, chosenMoodboardData.value);
-    Get.offNamed('/cartDesignInfo');
+    // Get.offNamed('/cartDesignInfo');
+    Get.back();
   }
 
   goOption() async {

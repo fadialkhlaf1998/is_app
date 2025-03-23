@@ -17,7 +17,7 @@ const String SEARCH = "/api/mobile/search";
 const String LOGIN = "/api/account/mobile/login";
 const String SIGNUP = "/api/account/mobile/signup";
 const String FORGOT_PASSWORD = "/api/account/forgot-password";
-const String VRIFICATION_CODE = "/api/account/mobile/verification-code";
+const String VERIFICATION_CODE = "/api/account/mobile/verification-code";
 
 /// -------------- CART -------------------///
 
@@ -33,3 +33,4 @@ const String CHANGE_PASSWORD = "/api/account/mobile/change-password";
 const String DELETE_ACCOUNT = "/api/account/mobile/delete-account";
 const String ORDER_HISTORY = "/api/mobile/order-history";
 const String ORDER_DETAILS = "/api/mobile/order-details/";
+

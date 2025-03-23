@@ -22,7 +22,9 @@ class OrderHistoryController extends GetxController {
         loading.value = false;
       }
     });
+    return;
   }
+
 
   checkStatus(index) {
     if (orderHistoryList[index].status == 'done') {

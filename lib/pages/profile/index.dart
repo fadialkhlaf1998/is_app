@@ -29,7 +29,7 @@ class ProfilePage extends StatelessWidget {
                   ? ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: 6,
+                      itemCount: 7,
                       itemBuilder: (BuildContext context, index) {
                         return ProfileOption(
                           icon: profileController.profileOptionIcons[index],

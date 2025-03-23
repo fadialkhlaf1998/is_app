@@ -1,6 +1,8 @@
+import 'package:is_app/controller/app_storage.dart';
 import 'package:is_app/data/models/body/auth/sign_up_body.dart';
 import 'package:is_app/data/repository/auth_repo.dart';
 import 'package:is_app/extensions/context_localization.dart';
+import 'package:is_app/pages/veridication_code/index.dart';
 import 'package:is_app/widgets/snack_bar/top_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -26,13 +28,14 @@ class SignUpController extends GetxController {
               phone: phoneController.text,
               fullName: fullNameController.text))
           .then((value) {
+        print(value);
         if (value.code == 1) {
-          Get.offNamed('/login');
-          TopSnackBar.success(
-              context, context.localizations.sign_up_successfully);
+          AppStorage.saveEmailPassword(emailController.text, passwordController.text);
+          Get.to(VerificationCodePage());
         } else {
           TopSnackBar.warning(context, context.localizations.something_wrong);
         }
+        loading.value = false;
       });
     }
   }

@@ -40,7 +40,13 @@ class DesignInfo extends StatelessWidget {
                 )
               : LoadingContainer(width: 0.15, height: 0.025),
           const SizedBox(height: 10),
-
+          designDetailsController.loading.value?Center():
+          TabbyPresentationSnippet(
+            price: designDetailsController.selectDesignDetails.price!.toString(),
+            currency: Currency.sar,
+            lang: Constant.isEnglish()?Lang.en:Lang.ar,
+          ),
+          const SizedBox(height: 10),
           !designDetailsController.loading.value
               ? Text(
                   Constant.isEnglish()
@@ -54,13 +60,7 @@ class DesignInfo extends StatelessWidget {
                 )
               : LoadingContainer(width: 0.8, height: 0.15),
           const SizedBox(height: 10),
-          designDetailsController.loading.value?Center():
-          TabbyPresentationSnippet(
-            price: designDetailsController.selectDesignDetails.price!.toString(),
-            currency: Currency.sar,
-            lang: Constant.isEnglish()?Lang.en:Lang.ar,
-          ),
-          const SizedBox(height: 10),
+
         ],
       ),
     );

@@ -12,7 +12,7 @@ void main() {
 
   TabbySDK().setup(
     withApiKey: '',
-    // environment: Environment.production,
+    environment: Environment.production,
   );
 
   runApp(const MyApp());

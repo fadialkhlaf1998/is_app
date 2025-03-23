@@ -37,7 +37,7 @@ class LoginPage extends StatelessWidget {
                 height: Get.height - Constant.removeSpaces(context),
                 child: Center(
                   child: Container(
-                    height: Get.height * 0.55,
+                    height: 380,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,

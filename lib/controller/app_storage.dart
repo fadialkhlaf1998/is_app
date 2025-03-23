@@ -44,6 +44,15 @@ class AppStorage {
     final pass = prefs.getString('userPassword') ?? '';
     return pass;
   }
+  static setVerificationCode(int verification_code) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt('verification_code',verification_code);
+  }
+  static Future<int> getVerificationCode() async {
+    final prefs = await SharedPreferences.getInstance();
+    final pass = prefs.getInt('verification_code') ?? 0;
+    return pass;
+  }
 
   static Future saveLanguage(String lang) async {
     final prefs = await SharedPreferences.getInstance();

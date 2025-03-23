@@ -141,16 +141,16 @@ class CartController extends GetxController {
   //   });
   // }
 
-  alwaysCheckoutRequestToDone(String paymentMethod) async {
+  alwaysCheckoutRequestToDone(String paymentMethod,String? referance_id) async {
     loadingCheck.value = true;
-    await cartRepo.checkout(paymentMethod).then((value) async {
+    await cartRepo.checkout(paymentMethod,referance_id).then((value) async {
       if (value.code == 1) {
         loadingCheck.value = false;
         await getCartRequest();
         return;
       } else {
         loadingCheck.value = false;
-        return await alwaysCheckoutRequestToDone(paymentMethod);
+        return await alwaysCheckoutRequestToDone(paymentMethod,referance_id);
       }
     });
   }
